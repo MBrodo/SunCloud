@@ -1,6 +1,6 @@
-import React, {useEffect} from 'react';
-import {View, Text, ActivityIndicator} from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
+import React, { useEffect } from 'react';
+import { View, Text, ActivityIndicator } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 import apiCall from '../store/actions/ApiActionCreator';
 
 const Home = () => {
@@ -18,7 +18,8 @@ const Home = () => {
   console.log(data, 'data');
 
   return (
-    <View style={{flex: 1, backgroundColor: 'white', justifyContent: 'center'}}>
+    <View
+      style={{ flex: 1, backgroundColor: 'white', justifyContent: 'center' }}>
       {loading ? (
         <ActivityIndicator size="large" color="blue" />
       ) : (
