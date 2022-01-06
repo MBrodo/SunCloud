@@ -53,10 +53,6 @@ export const styles = StyleSheet.create({
   activeText: {
     color: 'rgb(255,255,255)',
   },
-  modal: {
-    padding: 10,
-    flexDirection: 'row',
-  },
   panelHeader: {
     borderTopRightRadius: 25,
     borderTopLeftRadius: 25,
@@ -76,18 +72,4 @@ export const styles = StyleSheet.create({
     height: '100%',
     justifyContent: 'space-around',
   },
-  // dailyInfo: {
-  //   flexDirection: 'row',
-  //   justifyContent: 'space-between',
-  //   borderBottomWidth: 1,
-  //   borderColor: 'rgba(255,255,255, 0.5)',
-  // },
-  // date: { flexDirection: 'row', alignItems: 'center' },
-  // temp: { flexDirection: 'row', alignItems: 'center' },
-  // dateText: {
-  //   fontWeight: 'bold',
-  //   color: 'black',
-  //   marginHorizontal: 10,
-  //   fontSize: 15,
-  // },
 });

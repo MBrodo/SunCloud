@@ -5883,11 +5883,6 @@
     "lodash" "^4.17.21"
     "prop-types" "^15.7.2"
 
-"react-native-portalize@^1.0.7":
-  "integrity" "sha512-icqopPh9ZSV+I8C5LlZN9pQJ0OMeBDNqHhP80+qDx0hOGEcsDC09wgjogbEMfJE0GcMDM7PDYtyQkqa9gIqd1g=="
-  "resolved" "https://registry.npmjs.org/react-native-portalize/-/react-native-portalize-1.0.7.tgz"
-  "version" "1.0.7"
-
 "react-native-reanimated@*", "react-native-reanimated@^2.3.1":
   "integrity" "sha512-nzjVqwkB8eeyPKT2KoiA9EEz17ZMFSGMoOTC17Z9b5nE2Z4ZHjHM5EKhY0TlwzXFUuJAE9PhOfxF0wIO/maZSA=="
   "resolved" "https://registry.npmjs.org/react-native-reanimated/-/react-native-reanimated-2.3.1.tgz"
@@ -5947,7 +5942,7 @@
     "semver" "^5.4.1"
     "source-map" "^0.5.6"
 
-"react-native@*", "react-native@> 0.50.0", "react-native@>=0.45.0", "react-native@>=0.50.0", "react-native@0.66.4":
+"react-native@*", "react-native@>=0.45.0", "react-native@>=0.50.0", "react-native@0.66.4":
   "integrity" "sha512-9vx5dlSfQlKbbDtr8+xMon6qsmSu7jvjdXWZpEKh3XVKpUidbbODv7048gwVKX8YAel1egeR7hN8vzSeI6ssTw=="
   "resolved" "https://registry.npmjs.org/react-native/-/react-native-0.66.4.tgz"
   "version" "0.66.4"
@@ -6019,7 +6014,7 @@
     "react-shallow-renderer" "^16.13.1"
     "scheduler" "^0.20.2"
 
-"react@*", "react@^16.0.0 || ^17.0.0", "react@^16.14.0 || ^17.0.0", "react@^16.8.0 || ^17.0.0", "react@^16.8.3 || ^17", "react@^17.0.0", "react@> 15.0.0", "react@17.0.2":
+"react@*", "react@^16.0.0 || ^17.0.0", "react@^16.14.0 || ^17.0.0", "react@^16.8.0 || ^17.0.0", "react@^16.8.3 || ^17", "react@^17.0.0", "react@17.0.2":
   "integrity" "sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA=="
   "resolved" "https://registry.npmjs.org/react/-/react-17.0.2.tgz"
   "version" "17.0.2"

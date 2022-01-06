@@ -26,7 +26,7 @@ import Thunder from './animated/thunder.svg';
 
 export const images = {
   defaultBackground: require('./sky.jpg'),
-  nightBackground: require('./night1.jpg'),
+  nightBackground: require('./night.jpg'),
   defaultProfile: require('./defaultProfilePic.png'),
 };
 
