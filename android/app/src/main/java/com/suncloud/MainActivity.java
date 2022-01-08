@@ -1,5 +1,5 @@
 package com.suncloud;
-
+import android.os.Bundle;
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
@@ -15,6 +15,7 @@ public class MainActivity extends ReactActivity {
   protected String getMainComponentName() {
     return "SunCloud";
   }
+
     @Override
   protected ReactActivityDelegate createReactActivityDelegate() {
     return new ReactActivityDelegate(this, getMainComponentName()) {
@@ -24,4 +25,10 @@ public class MainActivity extends ReactActivity {
       }
     };
   }
+
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+  super.onCreate(null);
+}
+
 }
