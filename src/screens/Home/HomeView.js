@@ -1,20 +1,79 @@
-import React, { useEffect } from 'react';
-import { View, Text } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import apiCall from '../../store/actions/api/ApiActionCreator';
-import { Loader } from '../../common/Loader/Loader';
+import 'react-native-gesture-handler';
+import BottomSheet from 'reanimated-bottom-sheet';
+import * as React from 'react';
+import { View, Text, ImageBackground, Image, ScrollView } from 'react-native';
 import { styles } from './style';
-import { IP } from '../../Links';
+import { images } from '../../img/index';
+import MainIcon from '../../img/MainIcon.svg';
 
-const HomeView = () => {
-  const dispatch = useDispatch();
-  const data = useSelector(state => state.apiReducer.data);
-  const loading = useSelector(state => state.apiReducer.loading);
+import { TempInfo } from '../../common/TemperatureInfo/TempInfo';
+import { DailyInfo } from '../../common/DailyInfo/DailyInfo';
 
-  useEffect(() => {
-    dispatch(apiCall(IP.WeatherApi));
-  }, []);
-  return <View>{loading ? <Loader /> : <Text>I love iTechArt!</Text>}</View>;
+import { getHours, getDays, svgPicker } from '../../utils/HomeFuncts';
+
+export const HomeView = props => {
+  const panelHeader = () => (
+    <View style={styles.panelHeader}>
+      <View style={styles.handler} />
+    </View>
+  );
+
+  const hoursList = item => (
+    <View key={item.dt}>
+      <TempInfo
+        style={styles.activeText}
+        time={getHours(item)}
+        icon={svgPicker(item.weather[0].main)}
+        temp={item.temp}
+      />
+    </View>
+  );
+  const dailyList = item => (
+    <View key={item.dt}>
+      <DailyInfo
+        icon={svgPicker(item.weather[0].main)}
+        day={getDays(item)}
+        tempDay={item.temp.day}
+        tempNight={item.temp.night}
+      />
+    </View>
+  );
+
+  const panelContent = () => (
+    <View style={styles.panelContent}>
+      {props.data.daily.map(item => dailyList(item))}
+    </View>
+  );
+
+  const sheetRef = React.useRef(null);
+
+  return (
+    <ImageBackground
+      source={images.nightBackground}
+      style={styles.backgroundImage}>
+      <View style={styles.wrapper}>
+        <View style={styles.header}>
+          <MainIcon height={30} width={30} />
+          <Text style={styles.locationText}>{props.data.timezone}</Text>
+          <Image source={images.defaultProfile} style={styles.profilePic} />
+        </View>
+        <View style={styles.main}>
+          <Text style={styles.currentDegText}>{props.data.current.temp}°</Text>
+          <Text style={styles.commonText}>
+            Feels like {props.data.current.feels_like}°
+          </Text>
+        </View>
+        <ScrollView style={styles.footer}>
+          {props.data.hourly.map(item => hoursList(item))}
+        </ScrollView>
+      </View>
+      <BottomSheet
+        ref={sheetRef}
+        renderHeader={panelHeader}
+        renderContent={panelContent}
+        snapPoints={[330, 100]}
+        initialSnap={0}
+      />
+    </ImageBackground>
+  );
 };
-
-export default HomeView;
