@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import BottomSheet from 'reanimated-bottom-sheet';
 import * as React from 'react';
-import { View, Text, ImageBackground, Image } from 'react-native';
+import { View, Text, ImageBackground, Image, ScrollView } from 'react-native';
 import { styles } from './style';
 import { images } from '../../img/index';
 import MainIcon from '../../img/MainIcon.svg';
@@ -63,9 +63,9 @@ export const HomeView = props => {
             Feels like {props.data.current.feels_like}°
           </Text>
         </View>
-        <View style={styles.footer}>
+        <ScrollView style={styles.footer}>
           {props.data.hourly.map(item => hoursList(item))}
-        </View>
+        </ScrollView>
       </View>
       <BottomSheet
         ref={sheetRef}
