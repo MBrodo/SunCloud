@@ -5,7 +5,6 @@ import { IP } from '../../Links';
 import { HomeView } from './HomeView';
 import { Loader } from '../../common/Loader/Loader';
 import { data } from '../../consts/HomeConsts';
-import { svgs } from '../../img';
 
 const HomeContainer = () => {
   const dispatch = useDispatch();
