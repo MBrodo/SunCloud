@@ -25,7 +25,7 @@ export const HomeView = props => {
   );
 
   const hoursList = item => (
-    <View key={item.dt}>
+    <View key={item.dt} style={styles.hoursContainer}>
       <TempInfo
         style={styles.activeText}
         time={getHours(item)}
@@ -69,7 +69,7 @@ export const HomeView = props => {
             Feels like {props.data.current.feels_like}°
           </Text>
         </View>
-        <ScrollView contentContainerStyle={styles.footer}>
+        <ScrollView horizontal contentContainerStyle={styles.footer}>
           {props.data.hourly.map(item => hoursList(item))}
         </ScrollView>
       </View>
