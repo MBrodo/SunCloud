@@ -23,11 +23,13 @@ import SnowyNightEasy from './animated/snowy-4.svg';
 import SnowyNightMedium from './animated/snowy-5.svg';
 import SnowyNightHard from './animated/snowy-6.svg';
 import Thunder from './animated/thunder.svg';
+import Search from './search.svg';
 
 export const images = {
   defaultBackground: require('./sky.jpg'),
   nightBackground: require('./night.jpg'),
   defaultProfile: require('./defaultProfilePic.png'),
+  defaultSearch: require('./location.jpg'),
 };
 
 export const svgs = {
@@ -54,4 +56,5 @@ export const svgs = {
   snowyNightEasy: <SnowyNightEasy height={40} width={40} />,
   snowyNightMedium: <SnowyNightMedium height={40} width={40} />,
   snowyNightHard: <SnowyNightHard height={40} width={40} />,
+  search: <Search height={30} width={30} />,
 };

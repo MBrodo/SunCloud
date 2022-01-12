@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { styles } from './style';
-import MainIcon from '../../img/MainIcon.svg';
 
 export const DailyInfo = props => {
   return (
