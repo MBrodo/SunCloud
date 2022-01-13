@@ -37,6 +37,21 @@ export const data = {
       temp: 14,
       weather: [{ description: 'light snow', main: 'Atmosphere' }],
     },
+    {
+      dt: 1640689200,
+      temp: 15,
+      weather: [{ description: 'light snow', main: 'Clouds' }],
+    },
+    {
+      dt: 1640692800,
+      temp: 15,
+      weather: [{ description: 'light snow', main: 'Clear' }],
+    },
+    {
+      dt: 1640696400,
+      temp: 16,
+      weather: [{ description: 'light snow', main: 'Clear' }],
+    },
   ],
   daily: [
     {

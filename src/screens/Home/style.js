@@ -39,10 +39,15 @@ export const styles = StyleSheet.create({
   commonText: {
     color: 'rgba(255,255,255, 0.8)',
   },
+  hoursContainer: {
+    alignItems: 'center',
+    width: 63,
+  },
   footer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     marginTop: 10,
+    paddingHorizontal: 5,
   },
   weatherContainer: {
     alignItems: 'center',
