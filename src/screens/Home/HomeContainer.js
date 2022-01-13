@@ -15,6 +15,9 @@ const HomeContainer = () => {
   const goToSearch = () => {
     navigation.navigate('Search');
   };
+  const goToProfile = () => {
+    navigation.navigate('Profile');
+  };
 
   useEffect(() => {
     dispatch(apiCall(IP.WeatherApi));
@@ -22,7 +25,7 @@ const HomeContainer = () => {
   return isLoading ? (
     <Loader />
   ) : (
-    <HomeView data={data} goToSearch={goToSearch} />
+    <HomeView data={data} goToSearch={goToSearch} goToProfile={goToProfile} />
   );
 };
 

@@ -24,6 +24,7 @@ import SnowyNightMedium from './animated/snowy-5.svg';
 import SnowyNightHard from './animated/snowy-6.svg';
 import Thunder from './animated/thunder.svg';
 import Search from './search.svg';
+import Edit from './edit.svg';
 
 export const images = {
   defaultBackground: require('./sky.jpg'),
@@ -57,4 +58,5 @@ export const svgs = {
   snowyNightMedium: <SnowyNightMedium height={40} width={40} />,
   snowyNightHard: <SnowyNightHard height={40} width={40} />,
   search: <Search height={30} width={30} />,
+  edit: <Edit height={20} width={20} />,
 };
