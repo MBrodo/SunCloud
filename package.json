@@ -19,18 +19,17 @@
     "@types/react-native": "^0.66.8",
     "@types/react-test-renderer": "^17.0.1",
     "axios": "^0.24.0",
+    "lottie-ios": "^3.2.3",
+    "lottie-react-native": "^5.0.1",
     "react": "17.0.2",
     "react-native": "0.66.4",
-    "react-native-gesture-handler": "^2.1.0",
-
+    "react-native-gesture-handler": "^2.1.1",
     "react-native-reanimated": "^2.3.1",
+    "react-native-safe-area-context": "^3.3.2",
+    "react-native-screens": "^3.10.1",
     "react-native-sticky-parallax-header": "^0.4.1",
     "react-native-svg": "^12.1.1",
     "react-native-svg-transformer": "^0.14.3",
-
-    "react-native-safe-area-context": "^3.3.2",
-    "react-native-screens": "^3.10.1",
-
     "react-native-typescript-transformer": "^1.2.13",
     "react-redux": "^7.2.6",
     "reanimated-bottom-sheet": "^1.0.0-alpha.22",

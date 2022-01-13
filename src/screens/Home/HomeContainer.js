@@ -5,16 +5,25 @@ import { IP } from '../../Links';
 import { HomeView } from './HomeView';
 import { Loader } from '../../common/Loader/Loader';
 import { data } from '../../consts/HomeConsts';
+import { useNavigation } from '@react-navigation/native';
 
 const HomeContainer = () => {
   const dispatch = useDispatch();
   const dataIP = useSelector(state => state.apiReducer.data);
   const isLoading = useSelector(state => state.apiReducer.loading);
+  const navigation = useNavigation();
+  const goToSearch = () => {
+    navigation.navigate('Search');
+  };
 
   useEffect(() => {
     dispatch(apiCall(IP.WeatherApi));
   }, []);
-  return isLoading ? <Loader /> : <HomeView data={data} />;
+  return isLoading ? (
+    <Loader />
+  ) : (
+    <HomeView data={data} goToSearch={goToSearch} />
+  );
 };
 
 export default HomeContainer;

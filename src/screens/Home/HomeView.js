@@ -1,10 +1,16 @@
 import 'react-native-gesture-handler';
 import BottomSheet from 'reanimated-bottom-sheet';
 import * as React from 'react';
-import { View, Text, ImageBackground, Image, ScrollView } from 'react-native';
+import {
+  View,
+  Text,
+  ImageBackground,
+  Image,
+  ScrollView,
+  Pressable,
+} from 'react-native';
 import { styles } from './style';
-import { images } from '../../img/index';
-import MainIcon from '../../img/MainIcon.svg';
+import { images, svgs } from '../../img';
 
 import { TempInfo } from '../../common/TemperatureInfo/TempInfo';
 import { DailyInfo } from '../../common/DailyInfo/DailyInfo';
@@ -53,7 +59,7 @@ export const HomeView = props => {
       style={styles.backgroundImage}>
       <View style={styles.wrapper}>
         <View style={styles.header}>
-          <MainIcon height={30} width={30} />
+          <Pressable onPress={props.goToSearch}>{svgs.search}</Pressable>
           <Text style={styles.locationText}>{props.data.timezone}</Text>
           <Image source={images.defaultProfile} style={styles.profilePic} />
         </View>
@@ -63,7 +69,7 @@ export const HomeView = props => {
             Feels like {props.data.current.feels_like}°
           </Text>
         </View>
-        <ScrollView style={styles.footer}>
+        <ScrollView contentContainerStyle={styles.footer}>
           {props.data.hourly.map(item => hoursList(item))}
         </ScrollView>
       </View>
