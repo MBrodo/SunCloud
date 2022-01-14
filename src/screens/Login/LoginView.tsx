@@ -4,7 +4,7 @@ import { styles } from './style';
 import { images, svgs } from '../../img';
 import LottieView from 'lottie-react-native';
 
-export const LoginView = () => {
+export const LoginView = props => {
   return (
     <ImageBackground
       style={styles.backgroundImage}
@@ -19,11 +19,11 @@ export const LoginView = () => {
         <View style={styles.main}>
           <Text style={styles.welcomeText}>Available services</Text>
           <View style={styles.buttonBlock}>
-            <Pressable style={styles.buttonVk}>
+            <Pressable style={styles.buttonVk} onPress={props.goToHome}>
               {svgs.vk}
               <Text style={styles.buttonTextVk}>Login with Vk</Text>
             </Pressable>
-            <Pressable style={styles.buttonGoogle}>
+            <Pressable style={styles.buttonGoogle} onPress={props.goToHome}>
               {svgs.google}
               <Text style={styles.buttonTextGoogle}>Login with Google</Text>
             </Pressable>
