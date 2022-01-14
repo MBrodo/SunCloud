@@ -61,7 +61,9 @@ export const HomeView = props => {
         <View style={styles.header}>
           <Pressable onPress={props.goToSearch}>{svgs.search}</Pressable>
           <Text style={styles.locationText}>{props.data.timezone}</Text>
-          <Image source={images.defaultProfile} style={styles.profilePic} />
+          <Pressable onPress={props.goToProfile}>
+            <Image source={images.defaultProfile} style={styles.profilePic} />
+          </Pressable>
         </View>
         <View style={styles.main}>
           <Text style={styles.currentDegText}>{props.data.current.temp}°</Text>
@@ -77,7 +79,7 @@ export const HomeView = props => {
         ref={sheetRef}
         renderHeader={panelHeader}
         renderContent={panelContent}
-        snapPoints={[330, 100]}
+        snapPoints={['44%']}
         initialSnap={0}
       />
     </ImageBackground>
