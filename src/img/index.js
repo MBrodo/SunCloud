@@ -25,12 +25,15 @@ import SnowyNightHard from './animated/snowy-6.svg';
 import Thunder from './animated/thunder.svg';
 import Search from './search.svg';
 import Edit from './edit.svg';
+import Vk from './vk.svg';
+import Google from './google.svg';
 
 export const images = {
   defaultBackground: require('./sky.jpg'),
   nightBackground: require('./night.jpg'),
   defaultProfile: require('./defaultProfilePic.png'),
   defaultSearch: require('./location.jpg'),
+  defaultLogin: require('./login.jpg'),
 };
 
 export const svgs = {
@@ -59,4 +62,6 @@ export const svgs = {
   snowyNightHard: <SnowyNightHard height={40} width={40} />,
   search: <Search height={30} width={30} />,
   edit: <Edit height={20} width={20} />,
+  vk: <Vk height={35} width={35} />,
+  google: <Google height={25} width={25} />,
 };
