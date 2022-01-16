@@ -1,25 +1,15 @@
 import React from 'react';
-import {
-  View,
-  ImageBackground,
-  TextInput,
-  Text,
-  FlatList,
-  ScrollView,
-} from 'react-native';
+import { View, ImageBackground, TextInput, Text, FlatList } from 'react-native';
 import { styles } from './style';
 import { images } from '../../img';
 import LottieView from 'lottie-react-native';
 
-export const Item = ({ fullName }) => (
-  <View style={styles.citiesBlock}>
-    <Text style={styles.citiesText}>{fullName}</Text>
-  </View>
-);
-
 export const SearchView = props => {
-  const renderItem = ({ item }) => <Item fullName={item.fullName} />;
-
+  const renderItem = ({ item }) => (
+    <View style={styles.citiesBlock}>
+      <Text style={styles.citiesText}>{item.fullName}</Text>
+    </View>
+  );
   return (
     <ImageBackground
       style={styles.backgroundImage}
@@ -29,22 +19,16 @@ export const SearchView = props => {
           placeholder={props.placeholder}
           style={styles.searchBar}
           autoFocus={true}
+          onChangeText={searchCity => props.handleFilter(searchCity)}
         />
-        <FlatList
-          data={props.cities}
-          renderItem={renderItem}
-          style={styles.citiesResult}
-          showsVerticalScrollIndicator={false}
-        />
-        {/* <View style={styles.citiesResult}>
-          {props.cities.map((value, key) => {
-            return (
-              <View style={styles.citiesBlock} key={value.city}>
-                <Text style={styles.citiesText}>{value.fullName}</Text>
-              </View>
-            );
-          })}
-        </View> */}
+        {props.filteredCities.length != 0 && (
+          <FlatList
+            data={props.filteredCities}
+            renderItem={renderItem}
+            style={styles.citiesResult}
+            showsVerticalScrollIndicator={false}
+          />
+        )}
         <View style={styles.animationContainer}>
           <LottieView
             style={styles.animation}

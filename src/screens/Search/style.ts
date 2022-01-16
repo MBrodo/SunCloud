@@ -27,6 +27,8 @@ export const styles = StyleSheet.create({
     elevation: 7,
   },
   citiesResult: {
+    flexGrow: 0,
+    borderWidth: 1,
     marginTop: 5,
     backgroundColor: 'white',
     paddingHorizontal: 10,
@@ -39,6 +41,7 @@ export const styles = StyleSheet.create({
     shadowOpacity: 0.29,
     shadowRadius: 4.65,
     elevation: 7,
+    maxHeight: '33%',
   },
   citiesBlock: {
     height: 30,
@@ -48,9 +51,13 @@ export const styles = StyleSheet.create({
     fontSize: 15,
   },
   animationContainer: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    height: '80%',
   },
   animation: {
     height: 300,
