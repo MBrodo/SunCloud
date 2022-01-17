@@ -1,15 +1,25 @@
 import React from 'react';
-import { View, ImageBackground, TextInput, Text, FlatList } from 'react-native';
+import {
+  View,
+  ImageBackground,
+  TextInput,
+  Text,
+  FlatList,
+  Pressable,
+} from 'react-native';
 import { styles } from './style';
 import { images } from '../../img';
 import LottieView from 'lottie-react-native';
 
 export const SearchView = props => {
   const renderItem = ({ item }) => (
-    <View style={styles.citiesBlock}>
+    <Pressable
+      style={styles.citiesBlock}
+      onPress={() => props.setSelectedCity(item)}>
       <Text style={styles.citiesText}>{item.fullName}</Text>
-    </View>
+    </Pressable>
   );
+
   return (
     <ImageBackground
       style={styles.backgroundImage}
@@ -27,6 +37,7 @@ export const SearchView = props => {
             renderItem={renderItem}
             style={styles.citiesResult}
             showsVerticalScrollIndicator={false}
+            extraData={props.selectedCity}
           />
         )}
         <View style={styles.animationContainer}>
