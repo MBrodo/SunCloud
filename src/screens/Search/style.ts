@@ -14,6 +14,9 @@ export const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.3)',
   },
   searchBar: {
+    borderWidth: 1,
+    borderColor: 'rgba(0,0,0,0.6)',
+    fontSize: 16,
     backgroundColor: 'white',
     paddingHorizontal: 10,
     borderRadius: 5,
@@ -29,6 +32,7 @@ export const styles = StyleSheet.create({
   citiesResult: {
     flexGrow: 0,
     borderWidth: 1,
+    borderColor: 'rgba(0,0,0,0.6)',
     marginTop: 5,
     backgroundColor: 'white',
     paddingHorizontal: 10,
@@ -41,14 +45,14 @@ export const styles = StyleSheet.create({
     shadowOpacity: 0.29,
     shadowRadius: 4.65,
     elevation: 7,
-    maxHeight: '33%',
+    maxHeight: '38%',
   },
   citiesBlock: {
-    height: 30,
+    height: 40,
     justifyContent: 'center',
   },
   citiesText: {
-    fontSize: 15,
+    fontSize: 16,
   },
   animationContainer: {
     position: 'absolute',
