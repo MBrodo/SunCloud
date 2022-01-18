@@ -8,12 +8,7 @@ import { data } from '../../consts/HomeConsts';
 import { useNavigation } from '@react-navigation/native';
 
 const HomeContainer = ({ route }) => {
-  const [currentCity, setCurrentCity] = useState(null);
-  useEffect(() => {
-    if (route.params != undefined) {
-      setCurrentCity(route.params);
-    }
-  });
+  const [currentCity, setCurrentCity] = useState(route.params.selectedCity);
   const dispatch = useDispatch();
   const dataIP = useSelector(state => state.apiReducer.data);
   const isLoading = useSelector(state => state.apiReducer.loading);
@@ -26,8 +21,14 @@ const HomeContainer = ({ route }) => {
   };
 
   useEffect(() => {
-    dispatch(apiCall(IP.WeatherApi));
-  }, []);
+    setCurrentCity(route.params.selectedCity);
+  }, [route.params.selectedCity]);
+
+  useEffect(() => {
+    dispatch(
+      apiCall(IP(currentCity.coords.latitude, currentCity.coords.longitude)),
+    );
+  }, [currentCity]);
   return isLoading ? (
     <Loader />
   ) : (
