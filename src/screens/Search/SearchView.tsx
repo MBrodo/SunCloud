@@ -31,7 +31,7 @@ export const SearchView = props => {
           autoFocus={true}
           onChangeText={searchCity => props.handleFilter(searchCity)}
         />
-        {props.filteredCities.length != 0 && (
+        {props.filteredCities.length != 0 ? (
           <FlatList
             data={props.filteredCities}
             renderItem={renderItem}
@@ -39,14 +39,15 @@ export const SearchView = props => {
             showsVerticalScrollIndicator={false}
             extraData={props.selectedCity}
           />
+        ) : (
+          <View style={styles.animationContainer}>
+            <LottieView
+              style={styles.animation}
+              source={require('../../img/lottie/map.json')}
+              autoPlay
+            />
+          </View>
         )}
-        <View style={styles.animationContainer}>
-          <LottieView
-            style={styles.animation}
-            source={require('../../img/lottie/map.json')}
-            autoPlay
-          />
-        </View>
       </View>
     </ImageBackground>
   );
