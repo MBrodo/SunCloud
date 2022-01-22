@@ -16,12 +16,12 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   locationText: {
-    fontSize: 17,
+    fontSize: 20,
     color: 'rgba(255,255,255, 0.6)',
   },
   profilePic: {
-    height: 30,
-    width: 30,
+    height: 35,
+    width: 35,
     borderRadius: 100,
     borderColor: 'white',
     borderWidth: 1,

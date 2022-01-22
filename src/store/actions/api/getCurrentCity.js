@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const apiActionCreator = async url => {
+const getCurrentCity = async url => {
   return new Promise(resolve => {
     axios
       .get(url)
@@ -13,4 +13,4 @@ const apiActionCreator = async url => {
   });
 };
 
-export default apiActionCreator;
+export default getCurrentCity;

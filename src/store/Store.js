@@ -4,11 +4,9 @@ import { createLogger } from 'redux-logger';
 import apiReducer from './reducers/ApiReducer';
 
 const appReducers = combineReducers({
-  apiReducer,
+  data: apiReducer,
 });
-
-const rootReducer = (state, action) => appReducers(state, action);
 
 const logger = createLogger();
 
-export const store = createStore(rootReducer, applyMiddleware(thunk, logger));
+export const store = createStore(appReducers, applyMiddleware(thunk, logger));

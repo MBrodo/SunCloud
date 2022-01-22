@@ -1,5 +1,4 @@
-import { hourOptions } from '../consts/HomeConsts';
-import { daysOptions } from '../consts/HomeConsts';
+import { hourOptions, daysOptions } from '../consts/HomeConsts';
 import { svgs } from '../img';
 
 export const svgPicker = e => {

@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import apiCall from '../../store/actions/api/ApiActionCreator';
-import { IP } from '../../Links';
+import getCurrentCity from '../../store/actions/api/getCurrentCity';
+import { OneCallAPI, CurrWeatherAPI } from '../../Links';
 import { HomeView } from './HomeView';
 import { Loader } from '../../common/Loader/Loader';
-import { data } from '../../consts/HomeConsts';
 import { useNavigation } from '@react-navigation/native';
+import { setData, setDataCurrent } from '../../store/reducers/ApiReducer';
 
 const HomeContainer = ({ route }) => {
   const [currentCity, setCurrentCity] = useState(route.params.selectedCity);
+  const [isLoading, setLoading] = useState(true);
   const dispatch = useDispatch();
-  const dataIP = useSelector(state => state.apiReducer.data);
-  const isLoading = useSelector(state => state.apiReducer.loading);
+  const data = useSelector(state => state.data.data);
+  const dataCurrent = useSelector(state => state.data.dataCurrent);
   const navigation = useNavigation();
   const goToSearch = () => {
     navigation.navigate('Search');
@@ -22,17 +24,40 @@ const HomeContainer = ({ route }) => {
 
   useEffect(() => {
     setCurrentCity(route.params.selectedCity);
+    setLoading(true);
   }, [route.params.selectedCity]);
 
   useEffect(() => {
-    dispatch(
-      apiCall(IP(currentCity.coords.latitude, currentCity.coords.longitude)),
-    );
+    apiCall(
+      OneCallAPI(currentCity.coords.latitude, currentCity.coords.longitude),
+    ).then(res => {
+      if (res.status === 200) {
+        dispatch(setData(res.data));
+        getCurrentCity(
+          CurrWeatherAPI(
+            currentCity.coords.latitude,
+            currentCity.coords.longitude,
+          ),
+        ).then(res => {
+          if (res.status === 200) {
+            dispatch(setDataCurrent(res.data));
+            setLoading(false);
+            console.log(res.data, 'check');
+          }
+        });
+      }
+    });
   }, [currentCity]);
+
   return isLoading ? (
     <Loader />
   ) : (
-    <HomeView data={data} goToSearch={goToSearch} goToProfile={goToProfile} />
+    <HomeView
+      data={data}
+      dataCurrent={dataCurrent}
+      goToSearch={goToSearch}
+      goToProfile={goToProfile}
+    />
   );
 };
 

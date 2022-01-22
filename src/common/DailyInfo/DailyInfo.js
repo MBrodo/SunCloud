@@ -12,7 +12,7 @@ export const DailyInfo = props => {
         </View>
         <View style={styles.temp}>
           <Text style={styles.dateText}>{props.tempDay}°</Text>
-          <Text>{props.tempNight}°</Text>
+          <Text style={styles.nightText}>{props.tempNight}°</Text>
         </View>
       </View>
       <View style={styles.line} />
