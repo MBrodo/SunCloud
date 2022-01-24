@@ -13,7 +13,7 @@ const SearchContainer = () => {
     if (selectedCity != null) {
       navigation.navigate('Home', { selectedCity: selectedCity });
     }
-  });
+  }, [selectedCity]);
 
   const handleFilter = searchCity => {
     const newFilter = cities.filter(value => {
