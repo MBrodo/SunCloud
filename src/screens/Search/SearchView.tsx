@@ -1,27 +1,54 @@
 import React from 'react';
-import { View, ImageBackground, TextInput } from 'react-native';
+import {
+  View,
+  ImageBackground,
+  TextInput,
+  Text,
+  FlatList,
+  Pressable,
+} from 'react-native';
 import { styles } from './style';
 import { images } from '../../img';
 import LottieView from 'lottie-react-native';
 
-export const SearchView = () => {
+export const SearchView = props => {
+  const renderItem = ({ item }) => (
+    <Pressable
+      key={item.city}
+      style={styles.citiesBlock}
+      onPress={() => props.setSelectedCity(item)}>
+      <Text style={styles.citiesText}>{item.fullName}</Text>
+    </Pressable>
+  );
+
   return (
     <ImageBackground
       style={styles.backgroundImage}
       source={images.defaultSearch}>
       <View style={styles.wrapper}>
         <TextInput
-          placeholder="Search"
+          placeholder={props.placeholder}
           style={styles.searchBar}
           autoFocus={true}
+          onChangeText={props.handleFilter}
         />
-        <View style={styles.animationContainer}>
-          <LottieView
-            style={styles.animation}
-            source={require('../../img/lottie/map.json')}
-            autoPlay
+        {props.filteredCities.length != 0 ? (
+          <FlatList
+            data={props.filteredCities}
+            renderItem={renderItem}
+            style={styles.citiesResult}
+            showsVerticalScrollIndicator={false}
+            extraData={props.selectedCity}
           />
-        </View>
+        ) : (
+          <View style={styles.animationContainer}>
+            <LottieView
+              style={styles.animation}
+              source={require('../../img/lottie/map.json')}
+              autoPlay
+            />
+          </View>
+        )}
       </View>
     </ImageBackground>
   );
