@@ -13,17 +13,13 @@ const SearchContainer = () => {
     if (selectedCity != null) {
       navigation.navigate('Home', { selectedCity: selectedCity });
     }
-  });
+  }, [selectedCity]);
 
   const handleFilter = searchCity => {
     const newFilter = cities.filter(value => {
       return value.fullName.toLowerCase().includes(searchCity.toLowerCase());
     });
-    if (searchCity === '') {
-      setFilteredCities([]);
-    } else {
-      setFilteredCities(newFilter);
-    }
+    searchCity ? setFilteredCities(newFilter) : setFilteredCities([]);
   };
   return (
     <SearchView

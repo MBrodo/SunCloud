@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import apiCall from '../../store/actions/api/ApiActionCreator';
-import getCurrentCity from '../../store/actions/api/getCurrentCity';
 import { OneCallAPI, CurrWeatherAPI } from '../../Links';
 import { HomeView } from './HomeView';
 import { Loader } from '../../common/Loader/Loader';
@@ -33,7 +32,7 @@ const HomeContainer = ({ route }) => {
     ).then(res => {
       if (res.status === 200) {
         dispatch(setData(res.data));
-        getCurrentCity(
+        apiCall(
           CurrWeatherAPI(
             currentCity.coords.latitude,
             currentCity.coords.longitude,
@@ -42,7 +41,6 @@ const HomeContainer = ({ route }) => {
           if (res.status === 200) {
             dispatch(setDataCurrent(res.data));
             setLoading(false);
-            console.log(res.data, 'check');
           }
         });
       }

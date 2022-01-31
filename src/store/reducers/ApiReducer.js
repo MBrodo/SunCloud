@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { data } from '../../consts/HomeConsts';
 
 const initialState = {
   data: [],
@@ -7,7 +6,7 @@ const initialState = {
 };
 
 const apiReducer = createSlice({
-  name: data,
+  name: 'data',
   initialState,
   reducers: {
     setData: (state, action) => {

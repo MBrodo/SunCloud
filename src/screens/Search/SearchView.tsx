@@ -14,6 +14,7 @@ import LottieView from 'lottie-react-native';
 export const SearchView = props => {
   const renderItem = ({ item }) => (
     <Pressable
+      key={item.city}
       style={styles.citiesBlock}
       onPress={() => props.setSelectedCity(item)}>
       <Text style={styles.citiesText}>{item.fullName}</Text>
@@ -29,7 +30,7 @@ export const SearchView = props => {
           placeholder={props.placeholder}
           style={styles.searchBar}
           autoFocus={true}
-          onChangeText={searchCity => props.handleFilter(searchCity)}
+          onChangeText={props.handleFilter}
         />
         {props.filteredCities.length != 0 ? (
           <FlatList
