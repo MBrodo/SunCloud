@@ -53,7 +53,7 @@ export const HomeView = props => {
 
   return (
     <ImageBackground
-      source={images.nightBackground}
+      source={{ uri: props.cityImage.results[0].urls.full }}
       style={styles.backgroundImage}>
       <View style={styles.wrapper}>
         <View style={styles.header}>
