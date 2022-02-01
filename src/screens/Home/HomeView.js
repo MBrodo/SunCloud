@@ -6,15 +6,13 @@ import {
   Text,
   ImageBackground,
   Image,
-  ScrollView,
+  FlatList,
   Pressable,
 } from 'react-native';
 import { styles } from './style';
 import { images, svgs } from '../../img';
-
 import { TempInfo } from '../../common/TemperatureInfo/TempInfo';
 import { DailyInfo } from '../../common/DailyInfo/DailyInfo';
-
 import { getHours, getDays, svgPicker } from '../../utils/HomeFuncts';
 
 export const HomeView = props => {
@@ -24,13 +22,13 @@ export const HomeView = props => {
     </View>
   );
 
-  const hoursList = item => (
+  const hoursList = ({ item }) => (
     <View key={item.dt} style={styles.hoursContainer}>
       <TempInfo
         style={styles.activeText}
         time={getHours(item)}
         icon={svgPicker(item.weather[0].main)}
-        temp={item.temp}
+        temp={Math.round(item.temp)}
       />
     </View>
   );
@@ -39,8 +37,8 @@ export const HomeView = props => {
       <DailyInfo
         icon={svgPicker(item.weather[0].main)}
         day={getDays(item)}
-        tempDay={item.temp.day}
-        tempNight={item.temp.night}
+        tempDay={Math.round(item.temp.day)}
+        tempNight={Math.round(item.temp.night)}
       />
     </View>
   );
@@ -60,26 +58,35 @@ export const HomeView = props => {
       <View style={styles.wrapper}>
         <View style={styles.header}>
           <Pressable onPress={props.goToSearch}>{svgs.search}</Pressable>
-          <Text style={styles.locationText}>{props.data.timezone}</Text>
+          <Text style={styles.locationText}>
+            {props.dataCurrent.name}, {props.dataCurrent.sys.country}
+          </Text>
           <Pressable onPress={props.goToProfile}>
             <Image source={images.defaultProfile} style={styles.profilePic} />
           </Pressable>
         </View>
         <View style={styles.main}>
-          <Text style={styles.currentDegText}>{props.data.current.temp}°</Text>
+          <Text style={styles.currentDegText}>
+            {Math.round(props.data.current.temp)}°
+          </Text>
           <Text style={styles.commonText}>
-            Feels like {props.data.current.feels_like}°
+            Feels like {Math.round(props.data.current.feels_like)}°
           </Text>
         </View>
-        <ScrollView horizontal contentContainerStyle={styles.footer}>
-          {props.data.hourly.map(item => hoursList(item))}
-        </ScrollView>
+        <FlatList
+          data={props.data.hourly}
+          renderItem={hoursList}
+          contentContainerStyle={styles.footer}
+          showsHorizontalScrollIndicator={false}
+          horizontal={true}
+          extraData={props.currentCity}
+        />
       </View>
       <BottomSheet
         ref={sheetRef}
         renderHeader={panelHeader}
         renderContent={panelContent}
-        snapPoints={['44%']}
+        snapPoints={['44%', '85%']}
         initialSnap={0}
       />
     </ImageBackground>

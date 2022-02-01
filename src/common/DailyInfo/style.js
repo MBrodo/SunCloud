@@ -17,11 +17,14 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'black',
     marginHorizontal: 10,
-    fontSize: 15,
+    fontSize: 16,
   },
   line: {
     borderColor: 'rgba(210,215,211, 0.8)',
     borderBottomWidth: 1,
     marginTop: 10,
+  },
+  nightText: {
+    fontSize: 16,
   },
 });

@@ -60,7 +60,7 @@ export const svgs = {
   snowyNightEasy: <SnowyNightEasy height={40} width={40} />,
   snowyNightMedium: <SnowyNightMedium height={40} width={40} />,
   snowyNightHard: <SnowyNightHard height={40} width={40} />,
-  search: <Search height={30} width={30} />,
+  search: <Search height={32} width={32} />,
   edit: <Edit height={20} width={20} />,
   vk: <Vk height={35} width={35} />,
   google: <Google height={25} width={25} />,

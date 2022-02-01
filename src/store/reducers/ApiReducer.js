@@ -1,34 +1,22 @@
-import ACTION_TYPES from '../actions/api/ActionTypes';
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  loading: false,
-  data: '',
-  error: '',
+  data: [],
+  dataCurrent: [],
 };
 
-const apiReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case ACTION_TYPES.API_PENDING:
-      return {
-        ...state,
-        loading: true,
-      };
-    case ACTION_TYPES.API_SUCCESS:
-      return {
-        ...state,
-        data: action.payload,
-        loading: false,
-      };
-    case ACTION_TYPES.API_ERROR:
-      return {
-        ...state,
-        error: action.payload,
-        loading: false,
-      };
+const apiReducer = createSlice({
+  name: 'data',
+  initialState,
+  reducers: {
+    setData: (state, action) => {
+      state.data = action.payload;
+    },
+    setDataCurrent: (state, action) => {
+      state.dataCurrent = action.payload;
+    },
+  },
+});
 
-    default:
-      return state;
-  }
-};
-
-export default apiReducer;
+export const { setData, setDataCurrent } = apiReducer.actions;
+export default apiReducer.reducer;

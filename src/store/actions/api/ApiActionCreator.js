@@ -1,17 +1,14 @@
 import axios from 'axios';
-import { fetchData, fetchSuccess, fetchError } from './ApiAction';
 
-const apiActionCreator = url => dispatch => {
-  dispatch(fetchData());
-  return new Promise(() => {
+const apiActionCreator = async url => {
+  return new Promise(resolve => {
     axios
       .get(url)
       .then(response => {
-        dispatch(fetchSuccess(response.data));
+        resolve(response);
       })
       .catch(error => {
-        dispatch(fetchError(error));
-        console.log(error);
+        resolve(error.response);
       });
   });
 };
