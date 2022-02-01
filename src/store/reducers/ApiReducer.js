@@ -3,28 +3,22 @@ import axios from 'axios';
 import { OneCallAPI, CurrWeatherAPI } from '../../Links';
 
 const initialState = {
-  dataMain: [],
-  dataCity: [],
-  statusDataMain: '',
-  statusDataCity: '',
+  weatherData: [],
+  cityData: [],
+  requestStatus: '',
 };
 
-export const getDataMain = createAsyncThunk(
-  'data/getDataMain',
+export const getWeatherData = createAsyncThunk(
+  'data/getWeatherData',
   async (cityCoords, { rejectWithValue, dispatch }) => {
-    const res = await axios.get(
+    const resWeatherData = await axios.get(
       OneCallAPI(cityCoords.latitude, cityCoords.longitude),
     );
-    dispatch(setDataMain(res.data));
-  },
-);
-export const getDataCity = createAsyncThunk(
-  'data/getDataCity',
-  async (cityCoords, { rejectWithValue, dispatch }) => {
-    const res = await axios.get(
+    dispatch(setWeatherData(resWeatherData.data));
+    const resCityData = await axios.get(
       CurrWeatherAPI(cityCoords.latitude, cityCoords.longitude),
     );
-    dispatch(setDataCity(res.data));
+    dispatch(setCityData(resCityData.data));
   },
 );
 
@@ -32,34 +26,25 @@ const apiReducer = createSlice({
   name: 'data',
   initialState,
   reducers: {
-    setDataMain: (state, action) => {
-      state.dataMain = action.payload;
+    setWeatherData: (state, action) => {
+      state.weatherData = action.payload;
     },
-    setDataCity: (state, action) => {
-      state.dataCity = action.payload;
+    setCityData: (state, action) => {
+      state.cityData = action.payload;
     },
   },
   extraReducers: {
-    [getDataMain.fulfilled]: (state, action) => {
-      state.statusDataMain = 'finished';
+    [getWeatherData.fulfilled]: (state, action) => {
+      state.requestStatus = 'finished';
     },
-    [getDataMain.pending]: (state, action) => {
-      state.statusDataMain = 'loading';
+    [getWeatherData.pending]: (state, action) => {
+      state.requestStatus = 'loading';
     },
-    [getDataMain.rejected]: (state, action) => {
-      state.statusDataMain = 'error';
-    },
-    [getDataCity.fulfilled]: (state, action) => {
-      state.statusDataCity = 'finished';
-    },
-    [getDataCity.pending]: (state, action) => {
-      state.statusDataCity = 'loading';
-    },
-    [getDataCity.rejected]: (state, action) => {
-      state.statusDataCity = 'error';
+    [getWeatherData.rejected]: (state, action) => {
+      state.requestStatus = 'error';
     },
   },
 });
 
-export const { setDataMain, setDataCity } = apiReducer.actions;
+export const { setWeatherData, setCityData } = apiReducer.actions;
 export default apiReducer.reducer;

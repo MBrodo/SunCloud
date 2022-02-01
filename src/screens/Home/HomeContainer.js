@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { HomeView } from './HomeView';
 import { Loader } from '../../common/Loader/Loader';
 import { useNavigation } from '@react-navigation/native';
-import { getDataMain, getDataCity } from '../../store/reducers/ApiReducer';
+import { getWeatherData } from '../../store/reducers/ApiReducer';
 import { getUnsplashImg } from '../../store/reducers/UnsplashReducer';
 
 const HomeContainer = ({ route }) => {
@@ -26,25 +26,20 @@ const HomeContainer = ({ route }) => {
   }, [route.params.selectedCity]);
 
   useEffect(() => {
-    dispatch(getDataMain(currentCity.coords));
-    dispatch(getDataCity(currentCity.coords));
+    dispatch(getWeatherData(currentCity.coords));
   }, [currentCity]);
 
   useEffect(() => {
-    if (data.statusDataCity === 'finished') {
-      dispatch(getUnsplashImg(data.dataCity.name));
+    if (data.requestStatus === 'finished') {
+      dispatch(getUnsplashImg(data.cityData.name));
     }
   }, [data]);
 
   useEffect(() => {
-    if (
-      cityImage.status === 'finished' &&
-      data.statusDataMain === 'finished' &&
-      data.statusDataCity === 'finished'
-    ) {
+    if (cityImage.requestStatus === 'finished') {
       setLoading(false);
     }
-  }, [data, cityImage]);
+  }, [cityImage]);
 
   return isLoading ? (
     <Loader />

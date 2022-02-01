@@ -4,7 +4,7 @@ import { UnsplashAPI } from '../../Links';
 
 const initialState = {
   unsplashImg: [],
-  status: '',
+  requestStatus: '',
 };
 
 export const getUnsplashImg = createAsyncThunk(
@@ -25,13 +25,13 @@ const unsplashReducer = createSlice({
   },
   extraReducers: {
     [getUnsplashImg.fulfilled]: (state, action) => {
-      state.status = 'finished';
+      state.requestStatus = 'finished';
     },
     [getUnsplashImg.pending]: (state, action) => {
-      state.status = 'loading';
+      state.requestStatus = 'loading';
     },
     [getUnsplashImg.rejected]: (state, action) => {
-      state.status = 'error';
+      state.requestStatus = 'error';
     },
   },
 });

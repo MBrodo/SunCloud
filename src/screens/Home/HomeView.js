@@ -45,7 +45,7 @@ export const HomeView = props => {
 
   const panelContent = () => (
     <View style={styles.panelContent}>
-      {props.data.dataMain.daily.map(item => dailyList(item))}
+      {props.data.weatherData.daily.map(item => dailyList(item))}
     </View>
   );
 
@@ -59,7 +59,7 @@ export const HomeView = props => {
         <View style={styles.header}>
           <Pressable onPress={props.goToSearch}>{svgs.search}</Pressable>
           <Text style={styles.locationText}>
-            {props.data.dataCity.name}, {props.data.dataCity.sys.country}
+            {props.data.cityData.name}, {props.data.cityData.sys.country}
           </Text>
           <Pressable onPress={props.goToProfile}>
             <Image source={images.defaultProfile} style={styles.profilePic} />
@@ -67,14 +67,14 @@ export const HomeView = props => {
         </View>
         <View style={styles.main}>
           <Text style={styles.currentDegText}>
-            {Math.round(props.data.dataMain.current.temp)}°
+            {Math.round(props.data.weatherData.current.temp)}°
           </Text>
           <Text style={styles.commonText}>
-            Feels like {Math.round(props.data.dataMain.current.feels_like)}°
+            Feels like {Math.round(props.data.weatherData.current.feels_like)}°
           </Text>
         </View>
         <FlatList
-          data={props.data.dataMain.hourly}
+          data={props.data.weatherData.hourly}
           renderItem={hoursList}
           contentContainerStyle={styles.footer}
           showsHorizontalScrollIndicator={false}
