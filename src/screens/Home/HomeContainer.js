@@ -3,16 +3,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { HomeView } from './HomeView';
 import { Loader } from '../../common/Loader/Loader';
 import { useNavigation } from '@react-navigation/native';
-import { getData, getDataCurrent } from '../../store/reducers/ApiReducer';
+import { getDataMain, getDataCity } from '../../store/reducers/ApiReducer';
 import { getUnsplashImg } from '../../store/reducers/UnsplashReducer';
 
 const HomeContainer = ({ route }) => {
   const [currentCity, setCurrentCity] = useState(route.params.selectedCity);
   const [isLoading, setLoading] = useState(true);
   const dispatch = useDispatch();
-  const data = useSelector(state => state.data.data);
-  const dataCurrent = useSelector(state => state.data.dataCurrent);
-  const cityImage = useSelector(state => state.imagesBG.unsplashImg);
+  const data = useSelector(state => state.data);
+  const cityImage = useSelector(state => state.imagesBG);
   const navigation = useNavigation();
   const goToSearch = () => {
     navigation.navigate('Search');
@@ -27,24 +26,32 @@ const HomeContainer = ({ route }) => {
   }, [route.params.selectedCity]);
 
   useEffect(() => {
-    dispatch(getData(currentCity.coords));
-    dispatch(getDataCurrent(currentCity.coords));
+    dispatch(getDataMain(currentCity.coords));
+    dispatch(getDataCity(currentCity.coords));
   }, [currentCity]);
 
   useEffect(() => {
-    if (dataCurrent != []) {
-      dispatch(getUnsplashImg(dataCurrent.name));
+    if (data.statusDataCity === 'finished') {
+      dispatch(getUnsplashImg(data.dataCity.name));
+    }
+  }, [data]);
+
+  useEffect(() => {
+    if (
+      cityImage.status === 'finished' &&
+      data.statusDataMain === 'finished' &&
+      data.statusDataCity === 'finished'
+    ) {
       setLoading(false);
     }
-  }, [dataCurrent]);
+  }, [data, cityImage]);
 
   return isLoading ? (
     <Loader />
   ) : (
     <HomeView
       data={data}
-      dataCurrent={dataCurrent}
-      cityImage={cityImage}
+      cityImage={cityImage.unsplashImg}
       goToSearch={goToSearch}
       goToProfile={goToProfile}
     />

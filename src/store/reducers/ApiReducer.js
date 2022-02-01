@@ -3,26 +3,28 @@ import axios from 'axios';
 import { OneCallAPI, CurrWeatherAPI } from '../../Links';
 
 const initialState = {
-  data: [],
-  dataCurrent: [],
+  dataMain: [],
+  dataCity: [],
+  statusDataMain: '',
+  statusDataCity: '',
 };
 
-export const getData = createAsyncThunk(
-  'data/getData',
+export const getDataMain = createAsyncThunk(
+  'data/getDataMain',
   async (cityCoords, { rejectWithValue, dispatch }) => {
     const res = await axios.get(
       OneCallAPI(cityCoords.latitude, cityCoords.longitude),
     );
-    dispatch(setData(res.data));
+    dispatch(setDataMain(res.data));
   },
 );
-export const getDataCurrent = createAsyncThunk(
-  'data/getDataCurrent',
+export const getDataCity = createAsyncThunk(
+  'data/getDataCity',
   async (cityCoords, { rejectWithValue, dispatch }) => {
     const res = await axios.get(
       CurrWeatherAPI(cityCoords.latitude, cityCoords.longitude),
     );
-    dispatch(setDataCurrent(res.data));
+    dispatch(setDataCity(res.data));
   },
 );
 
@@ -30,22 +32,34 @@ const apiReducer = createSlice({
   name: 'data',
   initialState,
   reducers: {
-    setData: (state, action) => {
-      state.data = action.payload;
+    setDataMain: (state, action) => {
+      state.dataMain = action.payload;
     },
-    setDataCurrent: (state, action) => {
-      state.dataCurrent = action.payload;
+    setDataCity: (state, action) => {
+      state.dataCity = action.payload;
     },
   },
   extraReducers: {
-    [getData.fulfilled]: () => console.log('getData.fulfilled'),
-    [getData.pending]: () => console.log('getData.pending'),
-    [getData.rejected]: () => console.log('getData.rejected'),
-    [getDataCurrent.fulfilled]: () => console.log('getDataCurrent.fulfilled'),
-    [getDataCurrent.pending]: () => console.log('getDataCurrent.pending'),
-    [getDataCurrent.rejected]: () => console.log('getDataCurrent.rejected'),
+    [getDataMain.fulfilled]: (state, action) => {
+      state.statusDataMain = 'finished';
+    },
+    [getDataMain.pending]: (state, action) => {
+      state.statusDataMain = 'loading';
+    },
+    [getDataMain.rejected]: (state, action) => {
+      state.statusDataMain = 'error';
+    },
+    [getDataCity.fulfilled]: (state, action) => {
+      state.statusDataCity = 'finished';
+    },
+    [getDataCity.pending]: (state, action) => {
+      state.statusDataCity = 'loading';
+    },
+    [getDataCity.rejected]: (state, action) => {
+      state.statusDataCity = 'error';
+    },
   },
 });
 
-export const { setData, setDataCurrent } = apiReducer.actions;
+export const { setDataMain, setDataCity } = apiReducer.actions;
 export default apiReducer.reducer;
