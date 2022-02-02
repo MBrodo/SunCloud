@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { HomeView } from './HomeView';
 import { Loader } from '../../common/Loader/Loader';
 import { useNavigation } from '@react-navigation/native';
-import { getWeatherData } from '../../store/reducers/ApiReducer';
+import { getWeatherForecast } from '../../store/reducers/ApiReducer';
 import { getUnsplashImg } from '../../store/reducers/UnsplashReducer';
 
 const HomeContainer = ({ route }) => {
@@ -26,12 +26,12 @@ const HomeContainer = ({ route }) => {
   }, [route.params.selectedCity]);
 
   useEffect(() => {
-    dispatch(getWeatherData(currentCity.coords));
+    dispatch(getWeatherForecast(currentCity.coords));
   }, [currentCity]);
 
   useEffect(() => {
     if (data.requestStatus === 'finished') {
-      dispatch(getUnsplashImg(data.cityData.name));
+      dispatch(getUnsplashImg(data.cityName.name));
     }
   }, [data]);
 

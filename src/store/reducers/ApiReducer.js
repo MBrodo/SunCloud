@@ -3,22 +3,22 @@ import axios from 'axios';
 import { OneCallAPI, CurrWeatherAPI } from '../../Links';
 
 const initialState = {
-  weatherData: [],
-  cityData: [],
+  weatherForecast: [],
+  cityName: [],
   requestStatus: '',
 };
 
-export const getWeatherData = createAsyncThunk(
-  'data/getWeatherData',
+export const getWeatherForecast = createAsyncThunk(
+  'data/getWeatherForecast',
   async (cityCoords, { rejectWithValue, dispatch }) => {
-    const resWeatherData = await axios.get(
+    const resWeatherForecast = await axios.get(
       OneCallAPI(cityCoords.latitude, cityCoords.longitude),
     );
-    dispatch(setWeatherData(resWeatherData.data));
-    const resCityData = await axios.get(
+    dispatch(setWeatherForecast(resWeatherForecast.data));
+    const resCityName = await axios.get(
       CurrWeatherAPI(cityCoords.latitude, cityCoords.longitude),
     );
-    dispatch(setCityData(resCityData.data));
+    dispatch(setCityName(resCityName.data));
   },
 );
 
@@ -26,25 +26,25 @@ const apiReducer = createSlice({
   name: 'data',
   initialState,
   reducers: {
-    setWeatherData: (state, action) => {
-      state.weatherData = action.payload;
+    setWeatherForecast: (state, action) => {
+      state.weatherForecast = action.payload;
     },
-    setCityData: (state, action) => {
-      state.cityData = action.payload;
+    setCityName: (state, action) => {
+      state.cityName = action.payload;
     },
   },
   extraReducers: {
-    [getWeatherData.fulfilled]: (state, action) => {
+    [getWeatherForecast.fulfilled]: (state, action) => {
       state.requestStatus = 'finished';
     },
-    [getWeatherData.pending]: (state, action) => {
+    [getWeatherForecast.pending]: (state, action) => {
       state.requestStatus = 'loading';
     },
-    [getWeatherData.rejected]: (state, action) => {
+    [getWeatherForecast.rejected]: (state, action) => {
       state.requestStatus = 'error';
     },
   },
 });
 
-export const { setWeatherData, setCityData } = apiReducer.actions;
+export const { setWeatherForecast, setCityName } = apiReducer.actions;
 export default apiReducer.reducer;
