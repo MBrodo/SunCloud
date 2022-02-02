@@ -54,7 +54,7 @@ export const HomeView = props => {
   const bottomSheetPosition = React.useRef(new Animated.Value(1)).current;
 
   const mainSectionAnimation = {
-    opacity: Animated.add(0, Animated.multiply(bottomSheetPosition, 0.9)),
+    opacity: Animated.add(0, Animated.multiply(bottomSheetPosition, 1)),
     transform: [
       {
         translateY: Animated.add(
