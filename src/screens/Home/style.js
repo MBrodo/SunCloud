@@ -15,6 +15,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     padding: 15,
     alignItems: 'center',
+    zIndex: 10,
   },
   locationText: {
     fontSize: 20,
@@ -32,6 +33,7 @@ export const styles = StyleSheet.create({
     paddingVertical: 50,
     borderBottomWidth: 1,
     borderColor: 'rgba(255,255,255, 0.5)',
+    zIndex: 5,
   },
   currentDegText: {
     color: 'white',
