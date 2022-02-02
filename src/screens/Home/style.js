@@ -4,6 +4,7 @@ export const styles = StyleSheet.create({
   wrapper: {
     height: '100%',
     width: '100%',
+    backgroundColor: 'rgba(0,0,0,0.5)',
   },
   backgroundImage: {
     height: '100%',
