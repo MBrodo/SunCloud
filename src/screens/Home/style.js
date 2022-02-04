@@ -31,8 +31,6 @@ export const styles = StyleSheet.create({
   main: {
     alignItems: 'center',
     paddingVertical: 50,
-    borderBottomWidth: 1,
-    borderColor: 'rgba(255,255,255, 0.5)',
     zIndex: 5,
   },
   currentDegText: {
@@ -45,6 +43,10 @@ export const styles = StyleSheet.create({
   hoursContainer: {
     alignItems: 'center',
     width: 63,
+  },
+  footerSection: {
+    borderTopWidth: 1.3,
+    borderColor: 'rgba(255,255,255, 0.5)',
   },
   footer: {
     flexDirection: 'row',

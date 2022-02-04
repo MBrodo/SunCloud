@@ -14,7 +14,7 @@ import { images, svgs } from '../../img';
 import { TempInfo } from '../../common/TemperatureInfo/TempInfo';
 import { DailyInfo } from '../../common/DailyInfo/DailyInfo';
 import { getHours, getDays, svgPicker } from '../../utils/HomeFuncts';
-import Animated from 'react-native-reanimated';
+import Animated, { Value, multiply, add } from 'react-native-reanimated';
 
 export const HomeView = props => {
   const panelHeader = () => (
@@ -51,30 +51,25 @@ export const HomeView = props => {
   );
 
   const sheetRef = React.useRef(null);
-  const bottomSheetPosition = React.useRef(new Animated.Value(1)).current;
+  const bottomSheetPosition = React.useRef(new Value(1)).current;
 
   const mainSectionAnimation = {
-    opacity: Animated.add(0, Animated.multiply(bottomSheetPosition, 1)),
+    opacity: add(0, multiply(bottomSheetPosition, 1)),
     transform: [
       {
-        translateY: Animated.add(
-          -100,
-          Animated.multiply(bottomSheetPosition, 100),
-        ),
+        translateY: add(-100, multiply(bottomSheetPosition, 100)),
+      },
+      {
+        scale: add(0, multiply(bottomSheetPosition, 1)),
       },
     ],
-    useNativeDriver: true,
   };
   const headerAnimation = {
     transform: [
       {
-        translateY: Animated.add(
-          10,
-          Animated.multiply(bottomSheetPosition, -10),
-        ),
+        translateY: add(10, multiply(bottomSheetPosition, -10)),
       },
     ],
-    useNativeDriver: true,
   };
 
   return (
@@ -100,7 +95,7 @@ export const HomeView = props => {
             {Math.round(props.data.weatherForecast.current.feels_like)}°
           </Text>
         </Animated.View>
-        <Animated.View style={mainSectionAnimation}>
+        <Animated.View style={[mainSectionAnimation, styles.footerSection]}>
           <FlatList
             data={props.data.weatherForecast.hourly}
             renderItem={hoursList}
