@@ -14,6 +14,7 @@ import { images, svgs } from '../../img';
 import { TempInfo } from '../../common/TemperatureInfo/TempInfo';
 import { DailyInfo } from '../../common/DailyInfo/DailyInfo';
 import { getHours, getDays, svgPicker } from '../../utils/HomeFuncts';
+import Animated, { Value, multiply, add } from 'react-native-reanimated';
 
 export const HomeView = props => {
   const panelHeader = () => (
@@ -50,13 +51,33 @@ export const HomeView = props => {
   );
 
   const sheetRef = React.useRef(null);
+  const bottomSheetPosition = React.useRef(new Value(1)).current;
+
+  const mainSectionAnimation = {
+    opacity: add(0, multiply(bottomSheetPosition, 1)),
+    transform: [
+      {
+        translateY: add(-100, multiply(bottomSheetPosition, 100)),
+      },
+      {
+        scale: add(0, multiply(bottomSheetPosition, 1)),
+      },
+    ],
+  };
+  const headerAnimation = {
+    transform: [
+      {
+        translateY: add(10, multiply(bottomSheetPosition, -10)),
+      },
+    ],
+  };
 
   return (
     <ImageBackground
       source={{ uri: props.cityImage.results[0].urls.full }}
       style={styles.backgroundImage}>
       <View style={styles.wrapper}>
-        <View style={styles.header}>
+        <Animated.View style={[styles.header, headerAnimation]}>
           <Pressable onPress={props.goToSearch}>{svgs.search}</Pressable>
           <Text style={styles.locationText}>
             {props.data.cityName.name}, {props.data.cityName.sys.country}
@@ -64,8 +85,8 @@ export const HomeView = props => {
           <Pressable onPress={props.goToProfile}>
             <Image source={images.defaultProfile} style={styles.profilePic} />
           </Pressable>
-        </View>
-        <View style={styles.main}>
+        </Animated.View>
+        <Animated.View style={[styles.main, mainSectionAnimation]}>
           <Text style={styles.currentDegText}>
             {Math.round(props.data.weatherForecast.current.temp)}°
           </Text>
@@ -73,15 +94,17 @@ export const HomeView = props => {
             Feels like{' '}
             {Math.round(props.data.weatherForecast.current.feels_like)}°
           </Text>
-        </View>
-        <FlatList
-          data={props.data.weatherForecast.hourly}
-          renderItem={hoursList}
-          contentContainerStyle={styles.footer}
-          showsHorizontalScrollIndicator={false}
-          horizontal={true}
-          extraData={props.currentCity}
-        />
+        </Animated.View>
+        <Animated.View style={[mainSectionAnimation, styles.footerSection]}>
+          <FlatList
+            data={props.data.weatherForecast.hourly}
+            renderItem={hoursList}
+            contentContainerStyle={styles.footer}
+            showsHorizontalScrollIndicator={false}
+            horizontal={true}
+            extraData={props.currentCity}
+          />
+        </Animated.View>
       </View>
       <BottomSheet
         ref={sheetRef}
@@ -89,6 +112,9 @@ export const HomeView = props => {
         renderContent={panelContent}
         snapPoints={['44%', '85%']}
         initialSnap={0}
+        enabledBottomInitialAnimation={true}
+        callbackNode={bottomSheetPosition}
+        enabledBottomClamp={true}
       />
     </ImageBackground>
   );
