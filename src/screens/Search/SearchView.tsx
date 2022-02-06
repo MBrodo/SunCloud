@@ -13,12 +13,21 @@ import LottieView from 'lottie-react-native';
 
 export const SearchView = props => {
   const renderItem = ({ item }) => (
-    <Pressable
-      key={item.city}
-      style={styles.citiesBlock}
-      onPress={() => props.setSelectedCity(item)}>
-      <Text style={styles.citiesText}>{item.fullName}</Text>
-    </Pressable>
+    <View style={styles.citiesItem}>
+      <Pressable
+        key={item.city}
+        style={styles.citiesName}
+        onPress={() => props.setSelectedCity(item)}>
+        <Text style={styles.citiesText}>{item.fullName}</Text>
+      </Pressable>
+      <Pressable
+        style={styles.citiesAdd}
+        onPress={() => props.favCityActionPicker(item)}>
+        <Text style={styles.citiesText}>
+          {props.favCities.includes(item) ? 'Remove' : 'Add to fav.'}
+        </Text>
+      </Pressable>
+    </View>
   );
 
   return (
@@ -38,7 +47,6 @@ export const SearchView = props => {
             renderItem={renderItem}
             style={styles.citiesResult}
             showsVerticalScrollIndicator={false}
-            extraData={props.selectedCity}
           />
         ) : (
           <View style={styles.animationContainer}>
