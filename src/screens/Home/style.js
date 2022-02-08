@@ -82,4 +82,37 @@ export const styles = StyleSheet.create({
     height: '100%',
     justifyContent: 'space-around',
   },
+  modalBG: {
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalContainer: {
+    width: '80%',
+    backgroundColor: 'white',
+    padding: 20,
+    borderRadius: 20,
+    elevation: 20,
+  },
+  modalHeader: {
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  modalTitle: {
+    color: 'black',
+    fontSize: 17,
+  },
+  modalMain: {
+    width: '100%',
+    alignItems: 'center',
+    marginVertical: 20,
+  },
+  modalFooter: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
 });

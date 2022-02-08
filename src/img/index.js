@@ -27,6 +27,7 @@ import Search from './search.svg';
 import Edit from './edit.svg';
 import Vk from './vk.svg';
 import Google from './google.svg';
+import Close from './close.svg';
 
 export const images = {
   defaultBackground: require('./sky.jpg'),
@@ -64,4 +65,5 @@ export const svgs = {
   edit: <Edit height={20} width={20} />,
   vk: <Vk height={35} width={35} />,
   google: <Google height={25} width={25} />,
+  close: <Close height={25} width={25} />,
 };

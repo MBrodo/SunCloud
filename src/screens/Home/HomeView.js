@@ -8,6 +8,7 @@ import {
   Image,
   FlatList,
   Pressable,
+  Modal,
 } from 'react-native';
 import { styles } from './style';
 import { images, svgs } from '../../img';
@@ -15,8 +16,81 @@ import { TempInfo } from '../../common/TemperatureInfo/TempInfo';
 import { DailyInfo } from '../../common/DailyInfo/DailyInfo';
 import { getHours, getDays, svgPicker } from '../../utils/HomeFuncts';
 import Animated, { Value, multiply, add } from 'react-native-reanimated';
+import { WheelPicker } from 'react-native-wheel-picker-android';
+import { useSelector, useDispatch } from 'react-redux';
+import { removeCityAction } from '../../store/reducers/FavListReducer';
 
 export const HomeView = props => {
+  const [modalVisible, setModalVisible] = React.useState(false);
+  const favCities = useSelector(state => state.favList.favCitiesList);
+  const dispatch = useDispatch();
+
+  const [selectedCityFromPicker, setSelectedCityFromPicker] = React.useState(
+    props.data.cityName.name,
+  );
+
+  const onItemSelected = selectedItem => {
+    setSelectedCityFromPicker(selectedItem);
+    console.log(selectedCityFromPicker);
+  };
+  const removeCityFromFav = () => {
+    const i = selectedCityFromPicker;
+    dispatch(removeCityAction(favCities[i].city));
+  };
+  const setCurrentCityFromModal = () => {
+    const i = selectedCityFromPicker;
+    props.setCurrentCity(favCities[i]);
+    setModalVisible(false);
+    props.setLoading(true);
+  };
+
+  const modalCityPicker = () => {
+    return (
+      <Modal
+        transparent={true}
+        visible={modalVisible}
+        animationType="fade"
+        onRequestClose={() => {
+          setModalVisible(!modalVisible);
+        }}>
+        <View style={styles.modalBG}>
+          <View style={styles.modalContainer}>
+            <View style={styles.modalHeader}>
+              <Text style={styles.modalTitle}>
+                Select a city from favorites
+              </Text>
+              <Pressable
+                onPress={() => {
+                  setModalVisible(!modalVisible);
+                }}>
+                {svgs.close}
+              </Pressable>
+            </View>
+            <View style={styles.modalMain}>
+              <WheelPicker
+                data={favCities.map(item => {
+                  return item['city'];
+                })}
+                onItemSelected={onItemSelected}
+                indicatorColor={'gray'}
+                selectedItemTextSize={21}
+                itemTextSize={16}
+              />
+            </View>
+            <View style={styles.modalFooter}>
+              <Pressable onPress={removeCityFromFav}>
+                <Text>Remove from fav.</Text>
+              </Pressable>
+              <Pressable onPress={setCurrentCityFromModal}>
+                <Text>Pick a city</Text>
+              </Pressable>
+            </View>
+          </View>
+        </View>
+      </Modal>
+    );
+  };
+
   const panelHeader = () => (
     <View style={styles.panelHeader}>
       <View style={styles.handler} />
@@ -49,7 +123,6 @@ export const HomeView = props => {
       {props.data.weatherForecast.daily.map(item => dailyList(item))}
     </View>
   );
-
   const sheetRef = React.useRef(null);
   const bottomSheetPosition = React.useRef(new Value(1)).current;
 
@@ -77,11 +150,14 @@ export const HomeView = props => {
       source={{ uri: props.cityImage.results[0].urls.full }}
       style={styles.backgroundImage}>
       <View style={styles.wrapper}>
+        {modalCityPicker()}
         <Animated.View style={[styles.header, headerAnimation]}>
           <Pressable onPress={props.goToSearch}>{svgs.search}</Pressable>
-          <Text style={styles.locationText}>
-            {props.data.cityName.name}, {props.data.cityName.sys.country}
-          </Text>
+          <Pressable onPress={() => setModalVisible(true)}>
+            <Text style={styles.locationText}>
+              {props.data.cityName.name}, {props.data.cityName.sys.country}
+            </Text>
+          </Pressable>
           <Pressable onPress={props.goToProfile}>
             <Image source={images.defaultProfile} style={styles.profilePic} />
           </Pressable>
