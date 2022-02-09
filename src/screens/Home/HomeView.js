@@ -31,7 +31,6 @@ export const HomeView = props => {
 
   const onItemSelected = selectedItem => {
     setSelectedCityFromPicker(selectedItem);
-    console.log(selectedCityFromPicker);
   };
   const removeCityFromFav = () => {
     const i = selectedCityFromPicker;
@@ -66,25 +65,37 @@ export const HomeView = props => {
                 {svgs.close}
               </Pressable>
             </View>
-            <View style={styles.modalMain}>
-              <WheelPicker
-                data={favCities.map(item => {
-                  return item['city'];
-                })}
-                onItemSelected={onItemSelected}
-                indicatorColor={'gray'}
-                selectedItemTextSize={21}
-                itemTextSize={16}
-              />
-            </View>
-            <View style={styles.modalFooter}>
-              <Pressable onPress={removeCityFromFav}>
-                <Text>Remove from fav.</Text>
-              </Pressable>
-              <Pressable onPress={setCurrentCityFromModal}>
-                <Text>Pick a city</Text>
-              </Pressable>
-            </View>
+            {favCities.length == 0 ? (
+              <Text style={styles.modalText}>
+                Oops, looks like you don't have any favorite cities yet.
+              </Text>
+            ) : (
+              <>
+                <View style={styles.modalMain}>
+                  <WheelPicker
+                    data={favCities.map(item => {
+                      return item['city'];
+                    })}
+                    onItemSelected={onItemSelected}
+                    indicatorColor={'gray'}
+                    selectedItemTextSize={21}
+                    itemTextSize={16}
+                  />
+                </View>
+                <View style={styles.modalFooter}>
+                  <Pressable
+                    style={styles.modalButton}
+                    onPress={removeCityFromFav}>
+                    <Text style={styles.modalButtonText}>Remove from fav.</Text>
+                  </Pressable>
+                  <Pressable
+                    style={styles.modalButton}
+                    onPress={setCurrentCityFromModal}>
+                    <Text style={styles.modalButtonText}>Pick a city</Text>
+                  </Pressable>
+                </View>
+              </>
+            )}
           </View>
         </View>
       </Modal>

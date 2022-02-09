@@ -110,6 +110,20 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     marginVertical: 20,
   },
+  modalText: {
+    marginVertical: 15,
+    fontSize: 15,
+  },
+  modalButton: {
+    borderWidth: 1,
+    borderRadius: 8,
+    backgroundColor: 'rgba(218,255,255, 0.8)',
+    color: 'black',
+    padding: 8,
+  },
+  modalButtonText: {
+    color: 'black',
+  },
   modalFooter: {
     flexDirection: 'row',
     alignItems: 'center',
