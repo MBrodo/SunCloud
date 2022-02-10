@@ -34,7 +34,6 @@ const SearchContainer = () => {
       ? dispatch(removeCityAction(item.city))
       : dispatch(addCityAction(item));
   };
-  console.log(favCities);
 
   return (
     <SearchView
