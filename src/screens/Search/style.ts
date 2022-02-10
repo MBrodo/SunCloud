@@ -47,9 +47,19 @@ export const styles = StyleSheet.create({
     elevation: 7,
     maxHeight: '38%',
   },
-  citiesBlock: {
+  citiesItem: {
+    flexDirection: 'row',
+  },
+  citiesName: {
     height: 40,
     justifyContent: 'center',
+    width: '70%',
+  },
+  citiesAdd: {
+    height: 40,
+    justifyContent: 'center',
+    width: '30%',
+    alignItems: 'flex-end',
   },
   citiesText: {
     fontSize: 16,

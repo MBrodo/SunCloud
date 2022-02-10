@@ -49,6 +49,8 @@ const HomeContainer = ({ route }) => {
       cityImage={cityImage.unsplashImg}
       goToSearch={goToSearch}
       goToProfile={goToProfile}
+      setCurrentCity={setCurrentCity}
+      setLoading={setLoading}
     />
   );
 };
