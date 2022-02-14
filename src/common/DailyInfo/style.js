@@ -1,6 +1,6 @@
-import { StyleSheet } from 'react-native';
+import { DynamicStyleSheet, DynamicValue } from 'react-native-dynamic';
 
-export const styles = StyleSheet.create({
+export const stylesDynamic = new DynamicStyleSheet({
   dailyInfo: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -15,16 +15,17 @@ export const styles = StyleSheet.create({
   },
   dateText: {
     fontWeight: 'bold',
-    color: 'black',
+    color: new DynamicValue('black', 'gray'),
     marginHorizontal: 10,
     fontSize: 16,
   },
   line: {
-    borderColor: 'rgba(210,215,211, 0.8)',
+    borderColor: new DynamicValue('darkgray', '#BB86FC'),
     borderBottomWidth: 1,
     marginTop: 10,
   },
   nightText: {
     fontSize: 16,
+    color: new DynamicValue('gray', '#BB86FC'),
   },
 });

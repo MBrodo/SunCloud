@@ -1,11 +1,14 @@
 import React from 'react';
 import BottomSheet from 'reanimated-bottom-sheet';
 import { View, ImageBackground, Text, Image, Pressable } from 'react-native';
-import { styles } from './style';
+import { stylesDynamic } from './style';
+import { useDynamicValue } from 'react-native-dynamic';
 import { images, svgs } from '../../img';
 import { ProfileInfo } from '../../common/ProfileInfo/ProfileInfo';
 
-export const ProfileView = () => {
+export const ProfileView = props => {
+  const styles = useDynamicValue(stylesDynamic);
+
   const panelHeader = () => (
     <View style={styles.panelHeader}>
       <View style={styles.handler} />
@@ -17,9 +20,9 @@ export const ProfileView = () => {
       <ProfileInfo name={'Name:'} value={'Yegor'} />
       <ProfileInfo name={'Current city:'} value={'Minsk, Belarus'} />
       <ProfileInfo
-        name={'Saved cities:'}
-        value={'None'}
-        additionalText={'* Not available yet'}
+        name={'Current theme:'}
+        value={props.currentTheme}
+        additionalText={'* Dark / Light only'}
       />
       <ProfileInfo name={'Email:'} value={'yegor.vasilevskiy@gmail.com'} />
       <ProfileInfo name={'Phone:'} value={'+375 (29) 703 - 20 - 00'} />

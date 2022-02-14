@@ -10,7 +10,7 @@ import {
   Pressable,
   Modal,
 } from 'react-native';
-import { styles } from './style';
+import { stylesDynamic } from './style';
 import { images, svgs } from '../../img';
 import { TempInfo } from '../../common/TemperatureInfo/TempInfo';
 import { DailyInfo } from '../../common/DailyInfo/DailyInfo';
@@ -19,11 +19,13 @@ import Animated, { Value, multiply, add } from 'react-native-reanimated';
 import { WheelPicker } from 'react-native-wheel-picker-android';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeCityAction } from '../../store/reducers/FavListReducer';
+import { useDynamicValue } from 'react-native-dynamic';
 
 export const HomeView = props => {
   const [modalVisible, setModalVisible] = React.useState(false);
   const favCities = useSelector(state => state.favList.favCitiesList);
   const dispatch = useDispatch();
+  const styles = useDynamicValue(stylesDynamic);
 
   const [selectedCityFromPicker, setSelectedCityFromPicker] = React.useState(
     props.data.cityName.name,
@@ -77,9 +79,10 @@ export const HomeView = props => {
                       return item['city'];
                     })}
                     onItemSelected={onItemSelected}
-                    indicatorColor={'gray'}
+                    indicatorColor={'#BB89FC'}
                     selectedItemTextSize={21}
                     itemTextSize={16}
+                    itemTextColor={'gray'}
                   />
                 </View>
                 <View style={styles.modalFooter}>
@@ -197,7 +200,7 @@ export const HomeView = props => {
         ref={sheetRef}
         renderHeader={panelHeader}
         renderContent={panelContent}
-        snapPoints={['44%', '85%']}
+        snapPoints={['44%', '84%']}
         initialSnap={0}
         enabledBottomInitialAnimation={true}
         callbackNode={bottomSheetPosition}

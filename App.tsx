@@ -3,12 +3,15 @@ import { Provider } from 'react-redux';
 import { store } from './src/store/Store';
 import { NavigationContainer } from '@react-navigation/native';
 import { Navigation } from './src/navigation/StackNavigation';
+import { ColorSchemeProvider } from 'react-native-dynamic';
 
 const App = () => {
   return (
     <NavigationContainer>
       <Provider store={store}>
-        <Navigation />
+        <ColorSchemeProvider>
+          <Navigation />
+        </ColorSchemeProvider>
       </Provider>
     </NavigationContainer>
   );

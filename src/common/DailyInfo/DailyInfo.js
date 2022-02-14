@@ -1,8 +1,10 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { styles } from './style';
+import { stylesDynamic } from './style';
+import { useDynamicValue } from 'react-native-dynamic';
 
 export const DailyInfo = props => {
+  const styles = useDynamicValue(stylesDynamic);
   return (
     <View>
       <View style={styles.dailyInfo}>

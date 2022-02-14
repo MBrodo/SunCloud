@@ -1,6 +1,7 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { Dimensions } from 'react-native';
+import { DynamicStyleSheet, DynamicValue } from 'react-native-dynamic';
 
-export const styles = StyleSheet.create({
+export const stylesDynamic = new DynamicStyleSheet({
   backgroundImage: {
     position: 'absolute',
     left: 0,
@@ -11,7 +12,7 @@ export const styles = StyleSheet.create({
   wrapper: {
     height: '100%',
     width: '100%',
-    backgroundColor: 'rgba(0,0,0,0.3)',
+    backgroundColor: new DynamicValue('rgba(0,0,0,0.3)', 'rgba(0,0,0,0.6)'),
   },
   welcomeBlock: {
     alignItems: 'center',
@@ -19,12 +20,18 @@ export const styles = StyleSheet.create({
     height: '40%',
   },
   welcomeTitle: {
-    color: 'beige',
+    color: new DynamicValue(
+      'rgba(245, 245, 220, 1)',
+      'rgba(245, 245, 220, 0.8)',
+    ),
     fontSize: 28,
     marginBottom: 30,
   },
   welcomeText: {
-    color: 'beige',
+    color: new DynamicValue(
+      'rgba(245, 245, 220, 1)',
+      'rgba(245, 245, 220, 0.8)',
+    ),
     fontSize: 17,
   },
   main: {
@@ -36,7 +43,10 @@ export const styles = StyleSheet.create({
   },
   buttonVk: {
     flexDirection: 'row',
-    backgroundColor: 'rgba(25, 118, 210, 0.8)',
+    backgroundColor: new DynamicValue(
+      'rgba(25, 118, 210, 0.8)',
+      'rgba(25, 118, 210, 0.6)',
+    ),
     alignItems: 'center',
     justifyContent: 'center',
     height: 40,
@@ -73,7 +83,7 @@ export const styles = StyleSheet.create({
     elevation: 7,
   },
   buttonTextVk: {
-    color: 'beige',
+    color: 'rgb(245, 245, 220)',
     marginLeft: 10,
     marginRight: 20,
   },
