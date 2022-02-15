@@ -1,6 +1,7 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { Dimensions } from 'react-native';
+import { DynamicStyleSheet, DynamicValue } from 'react-native-dynamic';
 
-export const styles = StyleSheet.create({
+export const stylesDynamic = new DynamicStyleSheet({
   backgroundImage: {
     position: 'absolute',
     left: 0,
@@ -11,13 +12,14 @@ export const styles = StyleSheet.create({
   wrapper: {
     padding: 10,
     height: '100%',
-    backgroundColor: 'rgba(0, 0, 0, 0.3)',
+    backgroundColor: new DynamicValue('rgba(0, 0, 0, 0.3)', 'rgba(0,0,0,0.7)'),
   },
   searchBar: {
     borderWidth: 1,
     borderColor: 'rgba(0,0,0,0.6)',
     fontSize: 16,
-    backgroundColor: 'white',
+    backgroundColor: new DynamicValue('white', '#606060'),
+    color: new DynamicValue('gray', 'rgb(211,211,211)'),
     paddingHorizontal: 10,
     borderRadius: 5,
     shadowColor: '#000',
@@ -34,7 +36,7 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgba(0,0,0,0.6)',
     marginTop: 5,
-    backgroundColor: 'white',
+    backgroundColor: new DynamicValue('white', '#606060'),
     paddingHorizontal: 10,
     borderRadius: 5,
     shadowColor: '#000',

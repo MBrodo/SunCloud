@@ -1,6 +1,6 @@
-import { StyleSheet } from 'react-native';
+import { DynamicStyleSheet, DynamicValue } from 'react-native-dynamic';
 
-export const styles = StyleSheet.create({
+export const stylesDynamic = new DynamicStyleSheet({
   wrapper: {
     marginBottom: 15,
   },
@@ -10,11 +10,14 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 5,
   },
   text: {
-    color: 'black',
+    color: new DynamicValue('black', 'gray'),
     fontSize: 16,
   },
   line: {
-    borderColor: 'rgba(218,112,214,0.9)',
+    borderColor: '#BB70FC',
     borderBottomWidth: 1,
+  },
+  additionalText: {
+    color: 'gray',
   },
 });

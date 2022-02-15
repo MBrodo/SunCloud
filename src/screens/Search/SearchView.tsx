@@ -7,11 +7,14 @@ import {
   FlatList,
   Pressable,
 } from 'react-native';
-import { styles } from './style';
+import { stylesDynamic } from './style';
 import { images } from '../../img';
 import LottieView from 'lottie-react-native';
+import { useDynamicValue } from 'react-native-dynamic';
 
 export const SearchView = props => {
+  const styles = useDynamicValue(stylesDynamic);
+
   const renderItem = ({ item }) => (
     <View style={styles.citiesItem}>
       <Pressable

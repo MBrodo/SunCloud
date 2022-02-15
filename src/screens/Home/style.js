@@ -1,10 +1,10 @@
-import { StyleSheet } from 'react-native';
+import { DynamicStyleSheet, DynamicValue } from 'react-native-dynamic';
 
-export const styles = StyleSheet.create({
+export const stylesDynamic = new DynamicStyleSheet({
   wrapper: {
     height: '100%',
     width: '100%',
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    backgroundColor: new DynamicValue('rgba(0,0,0,0.5)', 'rgba(0,0,0,0.7)'),
   },
   backgroundImage: {
     height: '100%',
@@ -13,7 +13,9 @@ export const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: 15,
+    paddingHorizontal: 15,
+    paddingTop: 10,
+    height: '8%',
     alignItems: 'center',
     zIndex: 10,
   },
@@ -25,16 +27,17 @@ export const styles = StyleSheet.create({
     height: 35,
     width: 35,
     borderRadius: 100,
-    borderColor: 'white',
+    borderColor: 'rgba(255,255,255, 0.6)',
     borderWidth: 1,
   },
   main: {
     alignItems: 'center',
-    paddingVertical: 50,
+    justifyContent: 'center',
+    height: '30%',
     zIndex: 5,
   },
   currentDegText: {
-    color: 'white',
+    color: new DynamicValue('rgb(237, 234, 222)', 'rgb(211,211,211)'),
     fontSize: 80,
   },
   commonText: {
@@ -46,7 +49,7 @@ export const styles = StyleSheet.create({
   },
   footerSection: {
     borderTopWidth: 1.3,
-    borderColor: 'rgba(255,255,255, 0.5)',
+    borderColor: new DynamicValue('rgba(255,255,255,0.5)', '#BB70FC'),
   },
   footer: {
     flexDirection: 'row',
@@ -61,23 +64,23 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   activeText: {
-    color: 'rgb(255,255,255)',
+    color: new DynamicValue('rgb(237, 234, 222)', 'rgb(211,211,211)'),
   },
   panelHeader: {
     borderTopRightRadius: 25,
     borderTopLeftRadius: 25,
-    backgroundColor: 'white',
+    backgroundColor: new DynamicValue('rgb(237, 234, 222)', '#212121'),
     alignItems: 'center',
   },
   handler: {
     width: 45,
     height: 6,
     borderRadius: 4,
-    backgroundColor: 'gray',
+    backgroundColor: new DynamicValue('darkgray', '#BB70FC'),
     marginVertical: 10,
   },
   panelContent: {
-    backgroundColor: 'white',
+    backgroundColor: new DynamicValue('rgb(237, 234, 222)', '#212121'),
     paddingHorizontal: 20,
     height: '100%',
     justifyContent: 'space-around',
@@ -90,7 +93,7 @@ export const styles = StyleSheet.create({
   },
   modalContainer: {
     width: '80%',
-    backgroundColor: 'white',
+    backgroundColor: new DynamicValue('rgb(255,255,255)', 'rgb(211,211,211)'),
     padding: 20,
     borderRadius: 20,
     elevation: 20,
@@ -113,11 +116,13 @@ export const styles = StyleSheet.create({
   modalText: {
     marginVertical: 15,
     fontSize: 15,
+    color: 'black',
   },
   modalButton: {
     borderWidth: 1,
+    borderColor: '#BB89FC',
     borderRadius: 8,
-    backgroundColor: 'rgba(218,255,255, 0.8)',
+    backgroundColor: new DynamicValue('rgb(237, 234, 222)', '#BB89FC'),
     color: 'black',
     padding: 8,
   },

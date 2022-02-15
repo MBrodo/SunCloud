@@ -1,6 +1,7 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { Dimensions } from 'react-native';
+import { DynamicStyleSheet, DynamicValue } from 'react-native-dynamic';
 
-export const styles = StyleSheet.create({
+export const stylesDynamic = new DynamicStyleSheet({
   backgroundImage: {
     position: 'absolute',
     left: 0,
@@ -17,7 +18,7 @@ export const styles = StyleSheet.create({
   button: {
     height: 30,
     width: 85,
-    backgroundColor: 'white',
+    backgroundColor: new DynamicValue('rgb(237, 234, 222)', '#BB70FC'),
     borderWidth: 1,
     borderRadius: 5,
     alignItems: 'center',
@@ -27,7 +28,7 @@ export const styles = StyleSheet.create({
     height: 100,
     width: 100,
     borderRadius: 180,
-    borderColor: 'white',
+    borderColor: 'beige',
     borderWidth: 1,
   },
   userInfoHeader: {
@@ -40,7 +41,7 @@ export const styles = StyleSheet.create({
     height: 40,
     width: 40,
     borderRadius: 180,
-    backgroundColor: 'rgba(218,112,214,0.9)',
+    backgroundColor: '#BB70FC',
     position: 'relative',
     top: -30,
     right: -30,
@@ -48,24 +49,24 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-around',
   },
   userName: {
-    color: 'white',
+    color: new DynamicValue('rgb(237, 234, 222)', 'gray'),
     fontSize: 20,
   },
   panelHeader: {
     borderTopRightRadius: 25,
     borderTopLeftRadius: 25,
-    backgroundColor: 'white',
+    backgroundColor: new DynamicValue('rgb(237, 234, 222)', '#212121'),
     alignItems: 'center',
   },
   handler: {
     width: 45,
     height: 6,
     borderRadius: 4,
-    backgroundColor: 'white',
+    backgroundColor: new DynamicValue('rgb(237, 234, 222)', '#BB70FC'),
     marginVertical: 10,
   },
   panelContent: {
-    backgroundColor: 'white',
+    backgroundColor: new DynamicValue('rgb(237, 234, 222)', '#212121'),
     paddingHorizontal: 20,
     paddingVertical: 10,
     height: '100%',

@@ -1,10 +1,12 @@
 import React from 'react';
 import { Text, ImageBackground, View, Pressable } from 'react-native';
-import { styles } from './style';
+import { stylesDynamic } from './style';
 import { images, svgs } from '../../img';
 import LottieView from 'lottie-react-native';
+import { useDynamicValue } from 'react-native-dynamic';
 
 export const LoginView = props => {
+  const styles = useDynamicValue(stylesDynamic);
   return (
     <ImageBackground
       style={styles.backgroundImage}

@@ -1,8 +1,9 @@
-import { StyleSheet } from 'react-native';
+import { DynamicStyleSheet, DynamicValue } from 'react-native-dynamic';
 
-export const styles = StyleSheet.create({
+export const stylesDynamic = new DynamicStyleSheet({
   preloader: {
     height: '100%',
+    backgroundColor: new DynamicValue('white', '#212121'),
     justifyContent: 'center',
   },
 });
