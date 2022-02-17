@@ -16,7 +16,11 @@ const LoginContainer = () => {
   const goToHome = () => {
     navigation.replace('Home', { selectedCity: userLocation });
   };
-  return <LoginView goToHome={goToHome} />;
+  const goToPhotoMap = () => {
+    navigation.navigate('PhotoMap');
+  };
+
+  return <LoginView goToHome={goToHome} goToPhotoMap={goToPhotoMap} />;
 };
 
 export default LoginContainer;

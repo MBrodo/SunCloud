@@ -30,6 +30,10 @@ export const LoginView = props => {
               <Text style={styles.buttonTextGoogle}>Login with Google</Text>
             </Pressable>
           </View>
+          <Pressable style={styles.buttonMap} onPress={props.goToPhotoMap}>
+            {svgs.map}
+            <Text style={styles.buttonTextMap}>Go to Photo map</Text>
+          </Pressable>
           <LottieView
             style={styles.animation}
             source={require('../../img/lottie/weather.json')}

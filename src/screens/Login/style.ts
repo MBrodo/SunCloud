@@ -17,7 +17,7 @@ export const stylesDynamic = new DynamicStyleSheet({
   welcomeBlock: {
     alignItems: 'center',
     justifyContent: 'center',
-    height: '40%',
+    height: '35%',
   },
   welcomeTitle: {
     color: new DynamicValue(
@@ -59,6 +59,7 @@ export const stylesDynamic = new DynamicStyleSheet({
       width: 0,
       height: 3,
     },
+    zIndex: 1,
     shadowOpacity: 0.29,
     shadowRadius: 4.65,
     elevation: 7,
@@ -78,6 +79,27 @@ export const stylesDynamic = new DynamicStyleSheet({
       width: 0,
       height: 3,
     },
+    zIndex: 1,
+    shadowOpacity: 0.29,
+    shadowRadius: 4.65,
+    elevation: 7,
+  },
+  buttonMap: {
+    flexDirection: 'row',
+    backgroundColor: 'rgba(95, 145, 100,0.8)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 40,
+    width: 170,
+    borderWidth: 1,
+    borderRadius: 5,
+    margin: 10,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    zIndex: 1,
     shadowOpacity: 0.29,
     shadowRadius: 4.65,
     elevation: 7,
@@ -91,9 +113,14 @@ export const stylesDynamic = new DynamicStyleSheet({
     color: 'black',
     marginHorizontal: 10,
   },
+  buttonTextMap: {
+    color: 'rgb(245, 245, 220)',
+    marginHorizontal: 10,
+  },
   animation: {
     height: 350,
     width: 350,
-    top: -15,
+    top: -30,
+    zIndex: 0,
   },
 });

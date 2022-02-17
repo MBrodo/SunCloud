@@ -4,6 +4,7 @@ import Home from '../screens/Home';
 import Search from '../screens/Search';
 import Profile from '../screens/Profile';
 import Login from '../screens/Login';
+import { PhotoMapNavigation } from './PhotoMapNavigation';
 
 const Stack = createStackNavigator();
 
@@ -18,6 +19,7 @@ export const Navigation = () => {
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="Search" component={Search} />
       <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen name="PhotoMap" component={PhotoMapNavigation} />
     </Stack.Navigator>
   );
 };
