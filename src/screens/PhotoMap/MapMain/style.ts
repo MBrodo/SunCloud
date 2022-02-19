@@ -19,7 +19,8 @@ export const styles = StyleSheet.create({
     fontSize: 20,
   },
   mapContainer: {
-    ...StyleSheet.absoluteFillObject,
+    height: '95%',
+    width: '100%',
     justifyContent: 'flex-end',
     alignItems: 'center',
   },

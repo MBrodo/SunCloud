@@ -35,7 +35,6 @@ export const MapMenuView = props => {
           <MapView
             provider={PROVIDER_GOOGLE}
             style={styles.map}
-            showsUserLocation
             region={{
               latitude: 37.78825,
               longitude: -122.4324,

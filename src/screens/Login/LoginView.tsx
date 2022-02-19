@@ -21,16 +21,25 @@ export const LoginView = props => {
         <View style={styles.main}>
           <Text style={styles.welcomeText}>Available services</Text>
           <View style={styles.buttonBlock}>
-            <Pressable style={styles.buttonVk} onPress={props.goToHome}>
+            <Pressable
+              style={styles.buttonVk}
+              onPress={props.goToHome}
+              disabled={props.isLocationAccessDenied}>
               {svgs.vk}
               <Text style={styles.buttonTextVk}>Login with Vk</Text>
             </Pressable>
-            <Pressable style={styles.buttonGoogle} onPress={props.goToHome}>
+            <Pressable
+              style={styles.buttonGoogle}
+              onPress={props.goToHome}
+              disabled={props.isLocationAccessDenied}>
               {svgs.google}
               <Text style={styles.buttonTextGoogle}>Login with Google</Text>
             </Pressable>
           </View>
-          <Pressable style={styles.buttonMap} onPress={props.goToPhotoMap}>
+          <Pressable
+            style={styles.buttonMap}
+            onPress={props.goToPhotoMap}
+            disabled={props.isLocationAccessDenied}>
             {svgs.map}
             <Text style={styles.buttonTextMap}>Go to Photo map</Text>
           </Pressable>
