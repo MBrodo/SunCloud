@@ -11,7 +11,5 @@ export const UnsplashAPI = city => {
 };
 
 export const GeocodingAPI = (lat, lon) => {
-  return `http://api.positionstack.com/v1/reverse
-  ? access_key=9439105d585aac25c15cdd636b762c96
-  & query = ${lat},${lon}`;
+  return `http://api.positionstack.com/v1/reverse?access_key=9439105d585aac25c15cdd636b762c96&query=${lat},${lon}`;
 };

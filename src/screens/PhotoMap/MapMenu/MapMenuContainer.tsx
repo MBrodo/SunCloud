@@ -7,6 +7,9 @@ import { getMarkerAddress } from '../../../store/reducers/AddressReducer';
 const MapMenuContainer = () => {
   const userCoords = useSelector(state => state.photoMap.userCoords);
   const markerCoords = useSelector(state => state.photoMap.markerCoords);
+  const markerAddress = useSelector(
+    state => state.addressReducer.markerAddress,
+  );
   const [coords, setCoords] = useState(userCoords);
   const [isPointPicked, pointPicked] = useState(false);
   const navigation = useNavigation();
@@ -14,6 +17,13 @@ const MapMenuContainer = () => {
 
   const goToMapPicker = () => {
     navigation.navigate('MapPicker');
+  };
+  const markerPosition = () => {
+    if (markerAddress.data === undefined) {
+      return 'not picked yet';
+    } else {
+      return markerAddress.data[0].locality + ', ' + markerAddress.data[0].name;
+    }
   };
 
   useEffect(() => {
@@ -23,12 +33,14 @@ const MapMenuContainer = () => {
       pointPicked(true);
     }
   }, [markerCoords]);
+  console.log(markerAddress.data);
 
   return (
     <MapMenuView
       goToMapPicker={goToMapPicker}
       coords={coords}
       isPointPicked={isPointPicked}
+      markerPosition={markerPosition}
     />
   );
 };

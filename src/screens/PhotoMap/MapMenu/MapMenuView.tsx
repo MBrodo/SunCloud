@@ -20,7 +20,7 @@ export const MapMenuView = props => {
     <View style={styles.wrapper}>
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Current position:</Text>
-        <Text style={styles.headerText}>Minsk, brovki 11</Text>
+        <Text style={styles.headerText}>{props.markerPosition()}</Text>
       </View>
       <View style={styles.main}>
         <View style={styles.buttonsContainer}>
@@ -49,7 +49,7 @@ export const MapMenuView = props => {
           <MapView
             provider={PROVIDER_GOOGLE}
             style={styles.map}
-            initialRegion={{
+            region={{
               latitude: props.coords.latitude,
               longitude: props.coords.longitude,
               latitudeDelta: 0.015,
