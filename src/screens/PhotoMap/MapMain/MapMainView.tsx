@@ -15,8 +15,8 @@ export const MapMainView = props => {
           showsUserLocation
           style={styles.map}
           region={{
-            latitude: 37.78825,
-            longitude: -122.4324,
+            latitude: props.userCoords.latitude,
+            longitude: props.userCoords.longitude,
             latitudeDelta: 0.015,
             longitudeDelta: 0.0121,
           }}></MapView>

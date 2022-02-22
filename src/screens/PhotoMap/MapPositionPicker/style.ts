@@ -52,4 +52,8 @@ export const styles = StyleSheet.create({
     color: 'black',
     fontSize: 15,
   },
+  mapPinIcon: {
+    position: 'absolute',
+    top: '39%',
+  },
 });

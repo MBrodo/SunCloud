@@ -1,19 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  userLocation: [],
+  userCoords: {},
+  markerCoords: {},
 };
 
 export const PhotoMapReducer = createSlice({
-  name: 'PhotoMap',
+  name: 'photoMap',
   initialState,
   reducers: {
-    setUserLocation: (state, action) => {
-      state.userLocation = action.payload;
+    setUserCoords: (state, action) => {
+      state.userCoords = action.payload;
+    },
+    setMarkerCoords: (state, action) => {
+      state.markerCoords = action.payload;
     },
   },
 });
 
-export const { setUserLocation } = PhotoMapReducer.actions;
+export const { setUserCoords, setMarkerCoords } = PhotoMapReducer.actions;
 
 export default PhotoMapReducer.reducer;

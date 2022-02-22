@@ -29,6 +29,7 @@ import Vk from './vk.svg';
 import Google from './google.svg';
 import Close from './close.svg';
 import Map from './Map_icon.svg';
+import MapMarker from './map-marker.svg';
 
 export const images = {
   defaultBackground: require('./sky.jpg'),
@@ -68,4 +69,5 @@ export const svgs = {
   google: <Google height={25} width={25} />,
   close: <Close height={25} width={25} />,
   map: <Map height={25} width={25} />,
+  mapMarker: <MapMarker height={75} width={75} />,
 };

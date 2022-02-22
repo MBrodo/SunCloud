@@ -4,13 +4,15 @@ import { createLogger } from 'redux-logger';
 import apiReducer from './reducers/ApiReducer';
 import UnsplashReducer from './reducers/UnsplashReducer';
 import { favListReducer } from './reducers/FavListReducer';
-import { PhotoMapReducer } from './reducers/MapReducer';
+import PhotoMapReducer from './reducers/MapReducer';
+import AddressReducer from './reducers/AddressReducer';
 
 const appReducers = combineReducers({
   data: apiReducer,
   imagesBG: UnsplashReducer,
   favList: favListReducer,
   photoMap: PhotoMapReducer,
+  addressReducer: AddressReducer,
 });
 
 const logger = createLogger();
