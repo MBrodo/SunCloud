@@ -3,6 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   userCoords: {},
   markerCoords: {},
+  markerImage: {},
+  markersAll: [],
 };
 
 export const PhotoMapReducer = createSlice({
@@ -15,9 +17,16 @@ export const PhotoMapReducer = createSlice({
     setMarkerCoords: (state, action) => {
       state.markerCoords = action.payload;
     },
+    setMarkerImage: (state, action) => {
+      state.markerImage = action.payload;
+    },
+    addMarker: (state, action) => {
+      state.markersAll.push(action.payload);
+    },
   },
 });
 
-export const { setUserCoords, setMarkerCoords } = PhotoMapReducer.actions;
+export const { setUserCoords, setMarkerCoords, setMarkerImage, addMarker } =
+  PhotoMapReducer.actions;
 
 export default PhotoMapReducer.reducer;

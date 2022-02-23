@@ -36,10 +36,16 @@ export const MapMenuView = props => {
             </Pressable>
           </View>
           <View style={styles.buttonsLine}>
-            <Pressable style={styles.button} disabled={!props.isPointPicked}>
+            <Pressable
+              style={styles.button}
+              disabled={!props.isPointPicked}
+              onPress={props.takePhotoFromCamera}>
               <Text style={styles.buttonText}>Take photo</Text>
             </Pressable>
-            <Pressable style={styles.button} disabled={!props.isPointPicked}>
+            <Pressable
+              style={styles.button}
+              disabled={!props.isPointPicked}
+              onPress={props.takePhotoFromLibrary}>
               <Text style={styles.buttonText}>Add from lib</Text>
             </Pressable>
           </View>
@@ -61,7 +67,9 @@ export const MapMenuView = props => {
       </View>
       <View style={styles.footer}>
         <Pressable style={styles.footerButton}>
-          <Text style={styles.footerButtonText}>Submit</Text>
+          <Text style={styles.footerButtonText} onPress={props.goToMapMain}>
+            Submit
+          </Text>
         </Pressable>
       </View>
     </View>
