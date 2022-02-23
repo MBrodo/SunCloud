@@ -1,5 +1,6 @@
 import { hourOptions, daysOptions } from '../consts/HomeConsts';
 import { svgs } from '../img';
+import moment from 'moment';
 
 export const svgPicker = e => {
   switch (e) {
@@ -34,4 +35,8 @@ export const getHours = e => {
 
 export const getDays = e => {
   return new Date(e.dt * 1000).toLocaleDateString('en-EU', daysOptions);
+};
+
+export const getDate = e => {
+  return moment.unix(e / 1000).format('MMMM Do YYYY, h:mm:ss a');
 };

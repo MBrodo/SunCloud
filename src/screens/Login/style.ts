@@ -17,7 +17,7 @@ export const stylesDynamic = new DynamicStyleSheet({
   welcomeBlock: {
     alignItems: 'center',
     justifyContent: 'center',
-    height: '40%',
+    height: '35%',
   },
   welcomeTitle: {
     color: new DynamicValue(
@@ -42,58 +42,24 @@ export const stylesDynamic = new DynamicStyleSheet({
     marginTop: 10,
   },
   buttonVk: {
-    flexDirection: 'row',
     backgroundColor: new DynamicValue(
       'rgba(25, 118, 210, 0.8)',
       'rgba(25, 118, 210, 0.6)',
     ),
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: 40,
-    width: 180,
-    borderWidth: 1,
-    borderRadius: 5,
-    margin: 10,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowOpacity: 0.29,
-    shadowRadius: 4.65,
-    elevation: 7,
   },
   buttonGoogle: {
-    flexDirection: 'row',
     backgroundColor: 'rgba(245, 245, 220,0.8)',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: 40,
-    width: 170,
-    borderWidth: 1,
-    borderRadius: 5,
-    margin: 10,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowOpacity: 0.29,
-    shadowRadius: 4.65,
-    elevation: 7,
   },
-  buttonTextVk: {
-    color: 'rgb(245, 245, 220)',
-    marginLeft: 10,
-    marginRight: 20,
-  },
-  buttonTextGoogle: {
+  buttonGoogleText: {
     color: 'black',
-    marginHorizontal: 10,
+  },
+  buttonMap: {
+    backgroundColor: 'rgba(95, 145, 100,0.8)',
   },
   animation: {
     height: 350,
     width: 350,
-    top: -15,
+    top: -30,
+    zIndex: 0,
   },
 });

@@ -4,6 +4,7 @@ import { stylesDynamic } from './style';
 import { images, svgs } from '../../img';
 import LottieView from 'lottie-react-native';
 import { useDynamicValue } from 'react-native-dynamic';
+import { LoginBtn } from '../../common/Buttons/LoginButton/LoginButton';
 
 export const LoginView = props => {
   const styles = useDynamicValue(stylesDynamic);
@@ -21,15 +22,29 @@ export const LoginView = props => {
         <View style={styles.main}>
           <Text style={styles.welcomeText}>Available services</Text>
           <View style={styles.buttonBlock}>
-            <Pressable style={styles.buttonVk} onPress={props.goToHome}>
-              {svgs.vk}
-              <Text style={styles.buttonTextVk}>Login with Vk</Text>
-            </Pressable>
-            <Pressable style={styles.buttonGoogle} onPress={props.goToHome}>
-              {svgs.google}
-              <Text style={styles.buttonTextGoogle}>Login with Google</Text>
-            </Pressable>
+            <LoginBtn
+              colorBG={styles.buttonVk}
+              onPress={props.goToHome}
+              disabled={props.isLocationAccessDenied}
+              icon={svgs.vk}
+              text={'Login with Vk'}
+            />
+            <LoginBtn
+              colorBG={styles.buttonGoogle}
+              onPress={props.goToPhotoMap}
+              disabled={props.isLocationAccessDenied}
+              icon={svgs.google}
+              colorText={styles.buttonGoogleText}
+              text={'Go to Photo map'}
+            />
           </View>
+          <LoginBtn
+            colorBG={styles.buttonMap}
+            onPress={props.goToPhotoMap}
+            disabled={props.isLocationAccessDenied}
+            icon={svgs.map}
+            text={'Go to Photo map'}
+          />
           <LottieView
             style={styles.animation}
             source={require('../../img/lottie/weather.json')}
