@@ -13,11 +13,7 @@ export const MapMainView = props => {
 
   const modalCityPicker = () => {
     return (
-      <Modal
-        transparent={true}
-        visible={modalVisible}
-        animationType="fade"
-        onRequestClose={() => {}}>
+      <Modal transparent={true} visible={modalVisible} animationType="fade">
         <View style={styles.modalBG}>
           <View style={styles.modalContainer}>
             <View style={styles.modalHeader}>
