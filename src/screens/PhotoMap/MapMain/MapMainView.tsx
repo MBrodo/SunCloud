@@ -1,13 +1,46 @@
 import React from 'react';
-import { View, Text, Pressable, Image } from 'react-native';
-import MapView, { PROVIDER_GOOGLE, Marker, Callout } from 'react-native-maps';
+import { View, Text, Pressable, Image, Modal } from 'react-native';
+import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import { styles } from './style';
+import { svgs } from '../../../img';
+import { getDate } from '../../../utils/HomeFuncts';
 
 export const MapMainView = props => {
+  const [modalVisible, setModalVisible] = React.useState(false);
+  const [modalImage, setModalImage] = React.useState('');
+  const [modalDate, setModalDate] = React.useState('');
   console.log(props.markers);
+
+  const modalCityPicker = () => {
+    return (
+      <Modal
+        transparent={true}
+        visible={modalVisible}
+        animationType="fade"
+        onRequestClose={() => {}}>
+        <View style={styles.modalBG}>
+          <View style={styles.modalContainer}>
+            <View style={styles.modalHeader}>
+              <Pressable
+                onPress={() => {
+                  setModalVisible(false);
+                }}>
+                {svgs.close}
+              </Pressable>
+            </View>
+            <Image source={{ uri: modalImage }} style={styles.modalImage} />
+            <View style={styles.modalFooter}>
+              <Text style={styles.modalText}>{getDate(modalDate)}</Text>
+            </View>
+          </View>
+        </View>
+      </Modal>
+    );
+  };
 
   return (
     <View style={styles.wrapper}>
+      {modalCityPicker()}
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Photo map</Text>
       </View>
@@ -24,21 +57,17 @@ export const MapMainView = props => {
           }}>
           {props.markers.map((marker, index) => (
             <Marker
+              onPress={() => {
+                setModalImage(marker.path);
+                setModalDate(marker.modificationDate);
+                setModalVisible(true);
+              }}
               key={index}
               coordinate={{
                 latitude: marker.latitude,
                 longitude: marker.longitude,
-              }}>
-              <Callout>
-                <View>
-                  <Image
-                    source={{ uri: marker.path }}
-                    style={{ height: 100, width: 100 }}
-                  />
-                  <Text>{marker.modificationDate}</Text>
-                </View>
-              </Callout>
-            </Marker>
+              }}
+            />
           ))}
         </MapView>
       </View>

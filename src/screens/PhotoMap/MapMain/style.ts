@@ -52,4 +52,35 @@ export const styles = StyleSheet.create({
     color: 'black',
     fontSize: 15,
   },
+  modalBG: {
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalContainer: {
+    width: '90%',
+    height: '60%',
+    backgroundColor: 'rgb(255,255,255)',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 20,
+    elevation: 20,
+  },
+  modalHeader: {
+    alignItems: 'flex-end',
+    marginBottom: 5,
+  },
+  modalImage: {
+    height: '85%',
+    width: '100%',
+  },
+  modalFooter: {
+    alignItems: 'center',
+    marginTop: 5,
+  },
+  modalText: {
+    color: 'black',
+    fontSize: 18,
+  },
 });

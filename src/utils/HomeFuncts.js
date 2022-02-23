@@ -35,3 +35,7 @@ export const getHours = e => {
 export const getDays = e => {
   return new Date(e.dt * 1000).toLocaleDateString('en-EU', daysOptions);
 };
+
+export const getDate = e => {
+  return new Date(e * 1000).toLocaleString();
+};
