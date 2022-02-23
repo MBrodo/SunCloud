@@ -1,14 +1,15 @@
 import React from 'react';
-import { View, Text, Pressable, SafeAreaView } from 'react-native';
+import { View, Text, SafeAreaView } from 'react-native';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import { styles } from './style';
 import { svgs } from '../../../img';
+import { MapNavigationBtn } from '../../../common/Buttons/MapNavButton/PhMapNavButton';
 
 export const MapPickerView = props => {
   return (
     <SafeAreaView style={styles.wrapper}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Minsk, brovki 12</Text>
+        <Text style={styles.headerTitle}>Select marker position</Text>
       </View>
       <View style={styles.mapContainer}>
         <MapView
@@ -25,9 +26,13 @@ export const MapPickerView = props => {
         />
         <View style={styles.mapPinIcon}>{svgs.mapMarker}</View>
       </View>
-      <Pressable style={styles.button} onPress={props.goToMapMenu}>
-        <Text style={styles.buttonText}>Add photo</Text>
-      </Pressable>
+      <View style={styles.footer}>
+        <MapNavigationBtn
+          func={props.goToMapMenu}
+          disabled={false}
+          text={'Add photo'}
+        />
+      </View>
     </SafeAreaView>
   );
 };

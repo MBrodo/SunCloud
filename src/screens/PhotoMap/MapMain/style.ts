@@ -27,31 +27,6 @@ export const styles = StyleSheet.create({
   map: {
     ...StyleSheet.absoluteFillObject,
   },
-  button: {
-    backgroundColor: 'pink',
-    borderWidth: 1,
-    borderColor: 'black',
-    height: '5%',
-    width: '70%',
-    borderRadius: 30,
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'absolute',
-    bottom: '3%',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    zIndex: 1,
-    shadowOpacity: 0.29,
-    shadowRadius: 4.65,
-    elevation: 7,
-  },
-  buttonText: {
-    color: 'black',
-    fontSize: 15,
-  },
   modalBG: {
     backgroundColor: 'rgba(0,0,0,0.5)',
     flex: 1,
@@ -82,5 +57,9 @@ export const styles = StyleSheet.create({
   modalText: {
     color: 'black',
     fontSize: 18,
+  },
+  footer: {
+    position: 'absolute',
+    bottom: '3%',
   },
 });

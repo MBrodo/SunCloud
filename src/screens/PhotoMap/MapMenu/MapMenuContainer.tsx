@@ -6,6 +6,7 @@ import { getMarkerAddress } from '../../../store/reducers/AddressReducer';
 import ImagePicker from 'react-native-image-crop-picker';
 import { setMarkerImage } from '../../../store/reducers/MapReducer';
 import { addMarker } from '../../../store/reducers/MapReducer';
+import { styles } from './style';
 
 const MapMenuContainer = () => {
   const userCoords = useSelector(state => state.photoMap.userCoords);
@@ -54,6 +55,27 @@ const MapMenuContainer = () => {
       dispatch(setMarkerImage(image));
     });
   };
+  const isPhotoPicked = () => {
+    if (markerImage.path != undefined) {
+      return false;
+    } else {
+      return true;
+    }
+  };
+  const isButtonDisabled = () => {
+    if (isPointPicked === true) {
+      return styles.active;
+    } else {
+      return styles.disabled;
+    }
+  };
+  const isChooseBtnActive = () => {
+    if (isPointPicked !== true) {
+      return styles.active;
+    } else {
+      return styles.disabled;
+    }
+  };
 
   useEffect(() => {
     if (markerCoords.latitude != undefined) {
@@ -72,6 +94,9 @@ const MapMenuContainer = () => {
       markerPosition={markerPosition}
       takePhotoFromCamera={takePhotoFromCamera}
       takePhotoFromLibrary={takePhotoFromLibrary}
+      isPhotoPicked={isPhotoPicked}
+      isButtonDisabled={isButtonDisabled}
+      isChooseBtnActive={isChooseBtnActive}
     />
   );
 };

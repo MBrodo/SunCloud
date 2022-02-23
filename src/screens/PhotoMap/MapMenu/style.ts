@@ -41,7 +41,6 @@ export const styles = StyleSheet.create({
   button: {
     width: '40%',
     height: '35%',
-    backgroundColor: 'pink',
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1,
@@ -59,6 +58,12 @@ export const styles = StyleSheet.create({
   buttonText: {
     color: 'black',
     fontSize: 14,
+  },
+  active: {
+    backgroundColor: 'pink',
+  },
+  disabled: {
+    backgroundColor: 'palevioletred',
   },
   mapContainer: {
     height: '55%',
@@ -79,28 +84,5 @@ export const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  footerButton: {
-    backgroundColor: 'pink',
-    borderWidth: 1,
-    borderColor: 'black',
-    height: '60%',
-    width: '70%',
-    borderRadius: 30,
-    alignItems: 'center',
-    justifyContent: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    zIndex: 1,
-    shadowOpacity: 0.29,
-    shadowRadius: 4.65,
-    elevation: 7,
-  },
-  footerButtonText: {
-    color: 'black',
-    fontSize: 15,
   },
 });

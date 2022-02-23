@@ -1,7 +1,9 @@
 import React from 'react';
-import { View, Text, Pressable } from 'react-native';
+import { View, Text } from 'react-native';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import { styles } from './style';
+import { MapNavigationBtn } from '../../../common/Buttons/MapNavButton/PhMapNavButton';
+import { MapMenuBtn } from '../../../common/Buttons/MapMenuButton/PhMapMenuButton';
 
 export const MapMenuView = props => {
   const newPoint = () => {
@@ -25,29 +27,32 @@ export const MapMenuView = props => {
       <View style={styles.main}>
         <View style={styles.buttonsContainer}>
           <View style={styles.buttonsLine}>
-            <Pressable
-              style={styles.button}
+            <MapMenuBtn
+              styleFunc={props.isChooseBtnActive()}
               onPress={props.goToMapPicker}
-              disabled={props.isPointPicked}>
-              <Text style={styles.buttonText}>Choose point</Text>
-            </Pressable>
-            <Pressable style={styles.button} onPress={props.goToMapPicker}>
-              <Text style={styles.buttonText}>Change point</Text>
-            </Pressable>
+              disabled={props.isPointPicked}
+              text={'Choose point'}
+            />
+            <MapMenuBtn
+              styleFunc={styles.active}
+              onPress={props.goToMapPicker}
+              disabled={false}
+              text={'Change point'}
+            />
           </View>
           <View style={styles.buttonsLine}>
-            <Pressable
-              style={styles.button}
+            <MapMenuBtn
+              styleFunc={props.isButtonDisabled()}
+              onPress={props.takePhotoFromCamera}
               disabled={!props.isPointPicked}
-              onPress={props.takePhotoFromCamera}>
-              <Text style={styles.buttonText}>Take photo</Text>
-            </Pressable>
-            <Pressable
-              style={styles.button}
+              text={'Take photo'}
+            />
+            <MapMenuBtn
+              styleFunc={props.isButtonDisabled()}
+              onPress={props.takePhotoFromLibrary}
               disabled={!props.isPointPicked}
-              onPress={props.takePhotoFromLibrary}>
-              <Text style={styles.buttonText}>Add from lib</Text>
-            </Pressable>
+              text={'Add from lib'}
+            />
           </View>
         </View>
         <View style={styles.mapContainer}>
@@ -66,11 +71,11 @@ export const MapMenuView = props => {
         </View>
       </View>
       <View style={styles.footer}>
-        <Pressable style={styles.footerButton}>
-          <Text style={styles.footerButtonText} onPress={props.goToMapMain}>
-            Submit
-          </Text>
-        </Pressable>
+        <MapNavigationBtn
+          func={props.goToMapMain}
+          disabled={props.isPhotoPicked()}
+          text={'Submit'}
+        />
       </View>
     </View>
   );

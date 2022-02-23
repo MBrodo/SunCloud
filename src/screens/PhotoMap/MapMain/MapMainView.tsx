@@ -4,12 +4,12 @@ import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import { styles } from './style';
 import { svgs } from '../../../img';
 import { getDate } from '../../../utils/HomeFuncts';
+import { MapNavigationBtn } from '../../../common/Buttons/MapNavButton/PhMapNavButton';
 
 export const MapMainView = props => {
   const [modalVisible, setModalVisible] = React.useState(false);
   const [modalImage, setModalImage] = React.useState('');
   const [modalDate, setModalDate] = React.useState('');
-  console.log(props.markers);
 
   const modalCityPicker = () => {
     return (
@@ -71,9 +71,13 @@ export const MapMainView = props => {
           ))}
         </MapView>
       </View>
-      <Pressable style={styles.button} onPress={props.goToMapMenu}>
-        <Text style={styles.buttonText}>Add photo</Text>
-      </Pressable>
+      <View style={styles.footer}>
+        <MapNavigationBtn
+          func={props.goToMapMenu}
+          disabled={false}
+          text={'Add photo'}
+        />
+      </View>
     </View>
   );
 };
